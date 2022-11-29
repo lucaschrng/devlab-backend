@@ -10,9 +10,10 @@
 </head>
 
 <body>
-    <h1 class="mt-6">
+    <h1 class="mt-10">
         Hey
     </h1>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
