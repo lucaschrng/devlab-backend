@@ -18,6 +18,10 @@ var main = document.querySelector('main');
 var keywords = encodeURI(searchInput.value);
 searchInput.addEventListener('keyup', function () {
   keywords = encodeURI(searchInput.value);
+  elementsNb = resultsDiv.childElementCount;
+  for (var i = 0; i < elementsNb; i++) {
+    resultsDiv.removeChild(resultsDiv.firstChild);
+  }
   if (keywords !== '') {
     searchMovies(keywords, 1);
   }
@@ -40,10 +44,6 @@ function searchMovies(keywords, page) {
   });
 }
 function displayResults(movies) {
-  elementsNb = resultsDiv.childElementCount;
-  for (var i = 0; i < elementsNb; i++) {
-    resultsDiv.removeChild(resultsDiv.firstChild);
-  }
   movies.forEach(function (movie) {
     displayMovie(movie);
   });
@@ -66,7 +66,11 @@ function displayMovie(movie) {
     title.classList.add('max-w-full', 'whitespace-nowrap', 'overflow-hidden', 'text-ellipsis');
     var year = document.createElement('span');
     year.classList.add('opacity-40');
-    year.innerHTML = movie.release_date.slice(0, 4);
+    if (typeof movie.release_date === 'string') {
+      year.innerHTML = movie.release_date.slice(0, 4);
+    } else {
+      year.innerHTML = 'TBD';
+    }
     infos.appendChild(title);
     infos.appendChild(year);
     posterContainer.appendChild(poster);
