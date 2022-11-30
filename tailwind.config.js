@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         'bg': '#1E1E1E',
         'lighter-bg': '#383838',
+        'accent': '#8D5EF6'
       },
       boxShadow: {
         'small': '0px 4px 4px rgba(0, 0, 0, 0.25)',
