@@ -469,6 +469,9 @@ video {
 .mt-10{
   margin-top: 2.5rem;
 }
+.mt-6{
+  margin-top: 1.5rem;
+}
 .block{
   display: block;
 }
@@ -497,6 +500,9 @@ video {
   height: -moz-min-content;
   height: min-content;
 }
+.h-0{
+  height: 0px;
+}
 .min-h-screen{
   min-height: 100vh;
 }
@@ -524,6 +530,9 @@ video {
 }
 .w-full{
   width: 100%;
+}
+.w-\[250px\]{
+  width: 250px;
 }
 .max-w-6xl{
   max-width: 72rem;

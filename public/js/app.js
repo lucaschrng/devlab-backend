@@ -18,7 +18,6 @@ var main = document.querySelector('main');
 var keywords = encodeURI(searchInput.value);
 searchInput.addEventListener('keyup', function () {
   keywords = encodeURI(searchInput.value);
-  clearResults();
   if (keywords !== '') {
     searchMovies(keywords, 1);
   }
@@ -41,14 +40,19 @@ function searchMovies(keywords, page) {
   });
 }
 function displayResults(movies) {
+  elementsNb = resultsDiv.childElementCount;
+  for (var i = 0; i < elementsNb; i++) {
+    resultsDiv.removeChild(resultsDiv.firstChild);
+  }
   movies.forEach(function (movie) {
     displayMovie(movie);
   });
+  addEmptyDivs();
 }
 function displayMovie(movie) {
   if (typeof movie.poster_path === 'string') {
     var movieCard = document.createElement('div');
-    movieCard.classList.add('max-w-[250px]');
+    movieCard.classList.add('max-w-[250px]', 'mt-6');
     var posterContainer = document.createElement('a');
     posterContainer.href = '/movie/' + movie.id;
     var poster = document.createElement('img');
@@ -71,10 +75,11 @@ function displayMovie(movie) {
     resultsDiv.appendChild(movieCard);
   }
 }
-function clearResults() {
-  elementsNb = resultsDiv.childElementCount;
-  for (var i = 0; i < elementsNb; i++) {
-    resultsDiv.removeChild(resultsDiv.firstChild);
+function addEmptyDivs() {
+  for (var i = 0; i < 8; i++) {
+    var emptyDiv = document.createElement('div');
+    emptyDiv.classList.add('w-[250px]', 'h-0');
+    resultsDiv.appendChild(emptyDiv);
   }
 }
 
