@@ -574,6 +574,9 @@ video {
 .max-w-6xl{
   max-width: 72rem;
 }
+.max-w-\[250px\]{
+  max-width: 250px;
+}
 @keyframes fade{
   0%{
     opacity: 0;

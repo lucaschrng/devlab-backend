@@ -114,7 +114,7 @@ function displayResults(movies) {
 function displayMovie(movie, container) {
   if (typeof movie.poster_path === 'string') {
     var movieCard = document.createElement('div');
-    movieCard.classList.add('min-w-[250px]', 'mt-10', 'transition-all', 'duration-300');
+    movieCard.classList.add('min-w-[250px]', 'max-w-[250px]', 'mt-10', 'transition-all', 'duration-300');
     var posterContainer = document.createElement('a');
     posterContainer.href = '/movie/' + movie.id;
     var poster = document.createElement('img');
