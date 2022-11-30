@@ -12,7 +12,11 @@
 </head>
 
 <body>
-    <x-navbar />
+    <header>
+        <x-navbar />
+    </header>
+    <main class="px-24">
+    </main>
     <script src="/js/app.js"></script>
 </body>
 

@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     './resources/views/*.php',
-    './resources/views/components/*.php'
+    './resources/views/components/*.php',
+    './resources/js/*.js'
   ],
   theme: {
     extend: {
@@ -18,6 +19,15 @@ module.exports = {
       },
       gridRow: {
         'overlap': '1 / span 1',
+      },
+      animation: {
+        fade: 'fade 0.5s ease',
+      },
+      keyframes: {
+        fade: {
+          '0%': { opacity: 0},
+          '100%': { opacity: 1},
+        },
       },
     },
   },
