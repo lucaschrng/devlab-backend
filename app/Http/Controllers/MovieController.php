@@ -13,7 +13,8 @@ class MovieController extends Controller
         $people = Http::get('https://api.themoviedb.org/3/movie/' . $movie_id . '/credits?api_key=' . $_ENV['API_KEY'] . '&language=en-US');
         return view('movie', [
             'movie' => $movie->json(),
-            'people' => $people->json(),
+            'actors' => $people->json()['cast'],
+            'directors' => collect($people->json()['crew'])->where('job', 'Director')->all()
         ]);
     }
 }

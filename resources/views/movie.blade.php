@@ -37,6 +37,22 @@
                     @endforeach
                     {{ floor($movie['runtime'] / 60) . 'h' . $movie['runtime'] - floor($movie['runtime'] / 60) * 60 }}
                 </p>
+                <p>
+                    Directed by
+                    @foreach($directors as $director)
+                        @if($loop->count > 1)
+                            @if($loop->remaining === 1)
+                                {{ $director['name'] . ' and' }}
+                            @elseif (!$loop->last)
+                                {{ $director['name'] . ',' }}
+                            @else
+                                {{ $director['name'] }}
+                            @endif
+                        @else
+                            {{ $director['name'] }}
+                        @endif
+                    @endforeach
+                </p>
                 <div>
                     <h3>Overview</h3>
                     <p>{{ $movie['overview'] }}</p>
@@ -44,7 +60,7 @@
                 <div>
                     <h3>Cast</h3>
                     <ul>
-                        @foreach($people['cast'] as $actor)
+                        @foreach($actors as $actor)
                             @if($loop->index < 5)
                                 <li>
                                     <img src="https://image.tmdb.org/t/p/w300{{ $actor['profile_path'] }}" alt="">
