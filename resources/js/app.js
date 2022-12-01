@@ -42,7 +42,6 @@ sort.addEventListener('change', () => {
     }
 })
 
-
 if (bestMovies !== null) {
     searchBest();
 
