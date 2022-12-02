@@ -1,7 +1,7 @@
 <nav class="sticky top-0 flex justify-between items-center py-4 px-8 shadow-small bg-bg z-10">
     <h1 class="text-2xl font-semibold">wikiMovies</h1>
     <div class="flex items-stretch gap-4">
-        <div action="/search" method="post" class="flex items-stretch min-h-full rounded bg-lighter-bg">
+        <div class="flex items-stretch min-h-full rounded bg-lighter-bg">
             <input type="checkbox" name="activate-search" id="activate-search" class="peer hidden">
             <input type="text" placeholder="Search" name="search-query" id="search-query" class="w-0 text-lg rounded bg-transparent focus:outline-none placeholder:text-neutral-400 transition-all peer-checked:w-60 peer-checked:pl-3 peer-chekced:p-2">
             <label for="activate-search" class="search-label w-fit flex content-center items-center px-2 text-2xl bg-bg hover:bg-lighter-bg cursor-pointer rounded peer-checked:hidden">
