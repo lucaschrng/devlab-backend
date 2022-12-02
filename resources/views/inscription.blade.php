@@ -19,37 +19,45 @@ use Illuminate\Support\Facades\Http;
 </header>
 
 <main>
-    <form class="flex flex-col gap-4 text-white" method="post" action="http://devlab-backend.test/api/user">
+    <form class="flex flex-col gap-4 text-white" method="post" action="{{ route('user.store') }}">
+        @csrf
         <label for="username">Username</label>
         <input type="text" placeholder="username" name="username">
         @error("username")
-        <p class="text-red-500 ">{{$message}}</p>
+        <p class="text-error">{{$message}}</p>
         @enderror
 
-        <label for="username">First Name</label>
+        <label for="firstName">First Name</label>
         <input type="text" placeholder="Your First Name" name="firstName">
 
         @error("firstName")
-        <p class="text-red-500 text-xl bg-white ">{{$message}}</p>
+        <p class="text-xl text-error ">{{$message}}</p>
         @enderror
 
-        <label for="username">Last Name</label>
-        <input type="text" placeholder="Your Last Name" name="lastName">
-        @error("lastName")
-        <p class="text-red-500 ">{{$message}}</p>
+        <label for="lastName">Last Name</label>
+        <input type="text" placeholder="Your Last Name" name="lastName" >
+        @error('lastName')
+        <p class="text-error ">{{ $message }}</p>
         @enderror
 
-        <label for="username">Email</label>
-        <input type="text" placeholder="Your E-mail" name="email">
+        <label for="email">Email</label>
+        <input type="email" placeholder="Your E-mail" name="email">
 
         @error("email")
-        <p class="text-red-500 ">{{$message}}</p>
+        <p class="text-error">{{$message}}</p>
         @enderror
 
         <label for="username">Password</label>
         <input type="password" placeholder="password" name="password">
+
+        @error("password")
+        <p class="text-error">{{$message}}</p>
+        @enderror
+
         <input type="submit" value="Envoyer">
     </form>
+
+
 </main>
 
 <script src="/js/app.js"></script>

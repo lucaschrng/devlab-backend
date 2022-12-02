@@ -18,14 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // GET ALL USERS
-Route::get('/user',function (){
-    return \App\Models\User::all();
-});
 
-///AJOUTER UN NOUVEAUX USER
-Route::post('/user',[\App\Http\Controllers\UserController::class,"createUser"]);
-
-
+/*Route::get('user/{email}',function ($email){
+    //\App\Http\Controllers\UserController::class("authenticate");
+    \App\Http\Controllers\UserController::authenticate($email);
+});*/
 
 // SUPPRIMER UN USER
 Route::delete('/user/{id}',function ($id){

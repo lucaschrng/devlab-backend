@@ -24,3 +24,10 @@ Route::get('/inscription', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+
+//USER
+
+///AJOUTER UN NOUVEAUX USER
+//Route::post('/user',[\App\Http\Controllers\UserController::class,"createUser"])->name('user.store');
+Route::get('/user/{email}',[\App\Http\Controllers\UserController::class,"authenticate"])->name('user.connect');

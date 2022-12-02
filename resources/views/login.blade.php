@@ -18,8 +18,7 @@
 </header>
 
 <main>
-    <form action="" method="post" name="login" class=" flex flex-col gap-4">
-        <input type="text" placeholder="username" name="username">
+    <form action="{{ route('user.connect'}}" method="post" name="login" class=" flex flex-col gap-4">
         <input type="text" placeholder="email" name="email">
         <input type="password" placeholder="Your password" name="password">
         <input type="submit" value="Envoyer">
