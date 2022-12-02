@@ -23,28 +23,10 @@ Route::get('/user',function (){
 });
 
 ///AJOUTER UN NOUVEAUX USER
-Route::post('/user',function (){
-    request()->validate([
-        'username'=>'required',
-        'email'=>'required',
-        'firstName'=>'required',
-        'lastName'=>'required',
-        'password'=>'required'
-
-    ]);
-    $data =request()->all();
-
-    $user =new \App\Models\User();
-
-    $user->username=$data["username"];
-    $user->email=$data["email"];
-    $user->firstName=$data["firstName"];
-    $user->lastName=$data["lastName"];
-    $user->password=$data["password"];
+Route::post('/user',[\App\Http\Controllers\UserController::class,"createUser"]);
 
 
-    $user->save();
-});
+
 // SUPPRIMER UN USER
 Route::delete('/user/{id}',function ($id){
     $user = \App\Models\User::find($id);
