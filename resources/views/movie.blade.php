@@ -1,4 +1,5 @@
 <x-layout>
+    <main>
         <div class="flex justify-center">
             <div class="movie-section p-20 flex flex-col gap-16 max-w-[1300px] xl:flex-row">
                 <img src="<?= 'https://image.tmdb.org/t/p/original' . $movie['poster_path']; ?>" alt="" class="rounded xl:w-2/5">
@@ -65,4 +66,5 @@
                 </div>
             </div>
         </div>
+    </main>
 </x-layout>
