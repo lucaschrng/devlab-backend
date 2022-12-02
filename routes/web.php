@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'show']);
 
 Route::get('/movie/{movie_id}', [MovieController::class, 'show']);
+
+Route::get('genre/{genre_id}/{page}', [GenreController::class, 'show']);

@@ -12,9 +12,12 @@ class HomeController extends Controller
         $popularMovies = $request->json()['results'];
         $request = Http::get('https://api.themoviedb.org/3/discover/movie?api_key=' . $_ENV['API_KEY'] . '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_count.gte=2000&primary_release_date.gte=' . date('Y-m-d', strtotime("-1 years")) . '&with_watch_monetization_types=flatrate');
         $trendingMovies = $request->json()['results'];
+        $request = Http::get('https://api.themoviedb.org/3/genre/movie/list?api_key=' . $_ENV['API_KEY'] . '&language=en-US');
+        $genres = $request->json()['genres'];
         return view('home', [
             'popularMovies' => $popularMovies,
             'trendingMovies' => $trendingMovies,
+            'genres' => $genres
         ]);
     }
 }
