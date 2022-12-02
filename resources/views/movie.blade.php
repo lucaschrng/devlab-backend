@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>wikiMovies - </title>
-</head>
-<body>
-    <header class="z-10 sticky top-0">
-        <x-navbar />
-    </header>
-    <main>
+<x-layout>
         <div class="flex justify-center">
             <div class="movie-section p-20 flex flex-col gap-16 max-w-[1300px] xl:flex-row">
                 <img src="<?= 'https://image.tmdb.org/t/p/original' . $movie['poster_path']; ?>" alt="" class="rounded xl:w-2/5">
@@ -80,7 +65,4 @@
                 </div>
             </div>
         </div>
-    </main>
-    <script src="/js/app.js"></script>
-</body>
-</html>
+</x-layout>
