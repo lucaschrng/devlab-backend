@@ -433,9 +433,6 @@ video {
 .fixed{
   position: fixed;
 }
-.absolute{
-  position: absolute;
-}
 .relative{
   position: relative;
 }
@@ -456,6 +453,9 @@ video {
 }
 .z-10{
   z-index: 10;
+}
+.z-20{
+  z-index: 20;
 }
 .col-overlap{
   grid-column: 1 / span 1;
@@ -494,23 +494,17 @@ video {
 .-mt-px{
   margin-top: -1px;
 }
-.mt-20{
-  margin-top: 5rem;
-}
-.mt-10{
-  margin-top: 2.5rem;
-}
-.ml-3{
-  margin-left: 0.75rem;
-}
-.mr-3{
-  margin-right: 0.75rem;
-}
 .ml-6{
   margin-left: 1.5rem;
 }
 .mr-6{
   margin-right: 1.5rem;
+}
+.mt-10{
+  margin-top: 2.5rem;
+}
+.mt-20{
+  margin-top: 5rem;
 }
 .block{
   display: block;
@@ -542,9 +536,6 @@ video {
 }
 .h-0{
   height: 0px;
-}
-.h-full{
-  height: 100%;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -580,11 +571,11 @@ video {
 .min-w-\[250px\]{
   min-width: 250px;
 }
-.max-w-full{
-  max-width: 100%;
-}
 .max-w-6xl{
   max-width: 72rem;
+}
+.max-w-full{
+  max-width: 100%;
 }
 @keyframes fade{
   0%{
@@ -602,9 +593,6 @@ video {
 }
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-.grid-rows-1{
-  grid-template-rows: repeat(1, minmax(0, 1fr));
 }
 .flex-col{
   flex-direction: column;
@@ -627,20 +615,17 @@ video {
 .justify-between{
   justify-content: space-between;
 }
+.gap-24{
+  gap: 6rem;
+}
 .gap-6{
   gap: 1.5rem;
 }
 .gap-4{
   gap: 1rem;
 }
-.self-end{
-  align-self: flex-end;
-}
 .justify-self-end{
   justify-self: end;
-}
-.overflow-auto{
-  overflow: auto;
 }
 .overflow-hidden{
   overflow: hidden;
@@ -654,11 +639,11 @@ video {
 .rounded-lg{
   border-radius: 0.5rem;
 }
-.rounded{
-  border-radius: 0.25rem;
-}
 .rounded-full{
   border-radius: 9999px;
+}
+.rounded{
+  border-radius: 0.25rem;
 }
 .border-t{
   border-top-width: 1px;
@@ -687,6 +672,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
+.bg-black\/70{
+  background-color: rgb(0 0 0 / 0.7);
+}
 .bg-bg{
   --tw-bg-opacity: 1;
   background-color: rgb(30 30 30 / var(--tw-bg-opacity));
@@ -698,42 +686,15 @@ video {
 .bg-transparent{
   background-color: transparent;
 }
-.bg-white\/90{
-  background-color: rgb(255 255 255 / 0.9);
-}
-.bg-white\/20{
-  background-color: rgb(255 255 255 / 0.2);
-}
-.bg-bg\/20{
-  background-color: rgb(30 30 30 / 0.2);
-}
-.bg-black\/20{
-  background-color: rgb(0 0 0 / 0.2);
-}
-.bg-white\/10{
-  background-color: rgb(255 255 255 / 0.1);
-}
-.bg-black\/10{
-  background-color: rgb(0 0 0 / 0.1);
-}
-.bg-black\/90{
-  background-color: rgb(0 0 0 / 0.9);
-}
-.bg-black\/80{
-  background-color: rgb(0 0 0 / 0.8);
-}
-.bg-black\/70{
-  background-color: rgb(0 0 0 / 0.7);
-}
 .p-6{
   padding: 1.5rem;
 }
 .p-3{
   padding: 0.75rem;
 }
-.px-24{
-  padding-left: 6rem;
-  padding-right: 6rem;
+.py-24{
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 .py-4{
   padding-top: 1rem;
@@ -743,6 +704,10 @@ video {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+.px-24{
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
@@ -750,18 +715,6 @@ video {
 .px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-.px-12{
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-.px-10{
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-.py-24{
-  padding-top: 6rem;
-  padding-bottom: 6rem;
 }
 .pt-8{
   padding-top: 2rem;
@@ -777,17 +730,17 @@ video {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
-.text-2xl{
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.text-3xl{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 .font-semibold{
   font-weight: 600;
@@ -850,15 +803,6 @@ video {
 .opacity-40{
   opacity: 0.4;
 }
-.opacity-80{
-  opacity: 0.8;
-}
-.opacity-90{
-  opacity: 0.9;
-}
-.opacity-20{
-  opacity: 0.2;
-}
 .shadow{
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -879,17 +823,8 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.duration-200{
-  transition-duration: 200ms;
-}
 .duration-300{
   transition-duration: 300ms;
-}
-.ease-in{
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
-.ease-in-out{
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 * {
   margin: 0;
