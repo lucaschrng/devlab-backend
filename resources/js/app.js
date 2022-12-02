@@ -123,7 +123,7 @@ function displayMovie(movie, container) {
         poster.src = 'https://image.tmdb.org/t/p/w300' + movie.poster_path;
         let infos = document.createElement('a');
         infos.classList.add('flex', 'flex-col', 'items-center', 'mt-2', 'text-xl', 'font-medium');
-        infos.href = '/movie/' + movie.id;
+        infos.href = '/movie.blade.php/' + movie.id;
         let title = document.createElement('span');
         title.innerHTML = movie.title;
         title.classList.add('max-w-full', 'whitespace-nowrap', 'overflow-hidden', 'text-ellipsis')
