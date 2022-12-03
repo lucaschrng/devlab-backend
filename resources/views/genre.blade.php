@@ -27,11 +27,11 @@
             <div class="flex justify-center my-12 gap-2">
                 @for ($i = 1; $i <= 5; $i++)
                     @if($page <= 2)
-                        <a href="page{{ $i }}" class="{{ $i == $page ? 'bg-lighter-bg':'' }} text-xl rounded-full w-[3rem] leading-[3rem] h-[3rem] text-center hover:bg-lighter-bg">{{ $i }}</a>
+                        <a href="{{ $i }}" class="{{ $i == $page ? 'bg-lighter-bg':'' }} text-xl rounded-full w-[3rem] leading-[3rem] h-[3rem] text-center hover:bg-lighter-bg">{{ $i }}</a>
                     @elseif($page > $total_pages - 2)
-                        <a href="page{{ $i + $total_pages - 5 }}" class="{{ $i + $total_pages - 5 == $page ? 'bg-lighter-bg':'' }} text-xl rounded-full w-[3rem] leading-[3rem] h-[3rem] text-center hover:bg-lighter-bg">{{ $i + $total_pages - 5 }}</a>
+                        <a href="{{ $i + $total_pages - 5 }}" class="{{ $i + $total_pages - 5 == $page ? 'bg-lighter-bg':'' }} text-xl rounded-full w-[3rem] leading-[3rem] h-[3rem] text-center hover:bg-lighter-bg">{{ $i + $total_pages - 5 }}</a>
                     @else
-                        <a href="page{{ $i + $page - 3 }}" class="{{ $i + $page - 3 == $page ? 'bg-lighter-bg':'' }} text-xl rounded-full w-[3rem] leading-[3rem] h-[3rem] text-center hover:bg-lighter-bg">{{ $i + $page - 3 }}</a>
+                        <a href="{{ $i + $page - 3 }}" class="{{ $i + $page - 3 == $page ? 'bg-lighter-bg':'' }} text-xl rounded-full w-[3rem] leading-[3rem] h-[3rem] text-center hover:bg-lighter-bg">{{ $i + $page - 3 }}</a>
                     @endif
                 @endfor
             </div>
