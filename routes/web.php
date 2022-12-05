@@ -26,10 +26,6 @@ Route::get('/movie/{movie_id}', [MovieController::class, 'show']);
 
 Route::get('genre/{genre}/{page?}', [GenreController::class, 'show']);
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

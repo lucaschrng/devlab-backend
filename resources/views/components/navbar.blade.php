@@ -3,7 +3,7 @@
     <div class="flex items-stretch gap-4">
         <div class="flex items-stretch min-h-full rounded bg-lighter-bg">
             <input type="checkbox" name="activate-search" id="activate-search" class="peer hidden">
-            <input type="text" placeholder="Search" name="search-query" id="search-query" class="w-0 text-lg rounded bg-transparent focus:outline-none placeholder:text-neutral-400 transition-all peer-checked:w-60 peer-checked:pl-3 peer-chekced:p-2">
+            <input type="text" placeholder="Search" name="search-query" id="search-query" class="w-0 p-0 border-none text-lg rounded bg-transparent focus:outline-none placeholder:text-neutral-400 transition-all peer-checked:w-60 peer-checked:pl-3 peer-checked:p-2">
             <label for="activate-search" class="search-label w-fit flex content-center items-center px-2 text-2xl bg-bg hover:bg-lighter-bg cursor-pointer rounded peer-checked:hidden">
                 <ion-icon name="search-outline" class="row-overlap col-overlap opacity-40"></ion-icon>
             </label>

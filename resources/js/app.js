@@ -4,6 +4,32 @@ import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 
+const axios = require('axios');
+const apiKey = 'b0c77f111b96a7cafe54d722516ddeff';
+
+let searchInput = document.querySelector('#search-query');
+let searchBtn = document.querySelector('.search-label');
+let closeBtn = document.querySelector('.close-label');
+let resultsDiv = document.querySelector('.results');
+let resultsSection = document.querySelector('.results-section');
+let query = document.querySelector('.query');
+let sort = document.querySelector('.select-sort');
+let main = document.querySelector('main');
+let keywords = encodeURI(searchInput.value);
+let carousels = document.querySelectorAll('.carousel');
+let bestMovies = document.querySelector('.best-movies');
+let bestPrevious = document.querySelector('.best-movies-container > .previous-button');
+let bestNext = document.querySelector('.best-movies-container > .next-button');
+let translate = [];
+
+searchInput.addEventListener('keyup', () => {
+    keywords = encodeURI(searchInput.value);
+    query.innerHTML = searchInput.value;
+    if (keywords !== '') {
+        searchMovies(keywords, 1);
+    }
+})
+
 searchBtn.addEventListener('click', () => {
     resultsSection.classList.remove('hidden');
     main.classList.add('hidden');
@@ -73,7 +99,7 @@ carousels.forEach((carousel, index) => {
 function searchMovies(keywords, page) {
     axios.get('https://api.themoviedb.org/3/search/movie?api_key=b0c77f111b96a7cafe54d722516ddeff&language=en-US&query=' + keywords + '&page= ' + page + '&include_adult=false')
     .then(function (response) {
-        elementsNb = resultsDiv.childElementCount;
+        let elementsNb = resultsDiv.childElementCount;
         for (let i = 0; i < elementsNb; i++) {
             resultsDiv.removeChild(resultsDiv.firstChild)
         }
