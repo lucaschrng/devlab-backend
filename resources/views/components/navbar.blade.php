@@ -11,7 +11,7 @@
                 <ion-icon name="close-outline" class="row-overlap col-overlap opacity-40"></ion-icon>
             </label>
         </div>
-        <a href="" class="h-10 w-10 flex items-center rounded-full bg-lighter-bg">
+        <a href="{{ Auth::check() ? '/dashboard':'/login' }}" class="h-10 w-10 flex items-center rounded-full bg-lighter-bg">
             <span class="w-full h-min text-center text-xl">L</span>
         </a>
     </div>
