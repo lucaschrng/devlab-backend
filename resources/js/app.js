@@ -1,28 +1,8 @@
-const axios = require('axios');
-const apiKey = 'b0c77f111b96a7cafe54d722516ddeff';
+//import './bootstrap';
 
-let searchInput = document.querySelector('#search-query');
-let searchBtn = document.querySelector('.search-label');
-let closeBtn = document.querySelector('.close-label');
-let resultsDiv = document.querySelector('.results');
-let resultsSection = document.querySelector('.results-section');
-let query = document.querySelector('.query');
-let sort = document.querySelector('.select-sort');
-let main = document.querySelector('main');
-let keywords = encodeURI(searchInput.value);
-let carousels = document.querySelectorAll('.carousel');
-let bestMovies = document.querySelector('.best-movies');
-let bestPrevious = document.querySelector('.best-movies-container > .previous-button');
-let bestNext = document.querySelector('.best-movies-container > .next-button');
-let translate = [];
+import Alpine from 'alpinejs';
 
-searchInput.addEventListener('keyup', () => {
-    keywords = encodeURI(searchInput.value);
-    query.innerHTML = searchInput.value;
-    if (keywords !== '') {
-        searchMovies(keywords, 1);
-    }
-})
+window.Alpine = Alpine;
 
 searchBtn.addEventListener('click', () => {
     resultsSection.classList.remove('hidden');
@@ -157,3 +137,6 @@ function addEmptyDivs() {
         resultsDiv.appendChild(emptyDiv);
     }
 }
+
+Alpine.start();
+
