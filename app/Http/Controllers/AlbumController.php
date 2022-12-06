@@ -6,13 +6,22 @@ use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {
-    public function getUserAlbum($user_id){
-        $album = \App\Models\Album::where('user_id',$user_id)->get();
-        //$album = Album::all();
+    public function show($album_id){
 
-        dump($album);
-        return view('dashboard', ["albums"=>$album]);
+        //return view('album');
+        $movies = \App\Models\AlbumsMovie::where('album_id',$album_id)->get();
+        return view('album', ["movies"=>$movies]);
 
+
+    }
+
+    public function delete($album_id){
+        $album = \App\Models\Album::find($album_id);
+        if(!$album){
+            return response("Not Found",404);
+        }
+        $album->delete();
+        return response(":)",200);
 
     }
 }

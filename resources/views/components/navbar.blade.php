@@ -1,4 +1,4 @@
-<nav class="sticky top-0 flex justify-between items-center py-4 px-8 shadow-small bg-bg z-10">
+<nav class="sticky top-0 flex justify-between items-center py-4 px-8 shadow-small bg-bg z-50">
     <h1 class="text-2xl font-semibold">wikiMovies</h1>
     <div class="flex items-stretch gap-4">
         <div class="flex items-stretch min-h-full rounded bg-lighter-bg">

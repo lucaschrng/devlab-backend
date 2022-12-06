@@ -1,16 +1,8 @@
+'use strict'
 
-let userId=document.querySelector("#userId")
-let lienApi=("album/"+userId);
-console.log(lienApi)
-fetch(lienApi,{mode:'cors'})
-    .then(function (response){
-        return response.json();
-    })
-    .then(function (response){
-       return response
-    })
-    .catch(function (error){
-        return error;
-    })
+let albumSettings = document.querySelector(".settings-album")
+let settingsSpan=document.querySelector(".settings-span")
 
-Alpine.start();
+albumSettings.addEventListener('click',function (){
+    settingsSpan.classList.toggle('hidden');
+})

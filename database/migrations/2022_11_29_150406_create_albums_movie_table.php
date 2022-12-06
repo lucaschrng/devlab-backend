@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('albums_movie', function (Blueprint $table) {
+        Schema::create('albums_movies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('album_id')->constrained('albums');
             $table->string("movieName");
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('albums_movie');
+        Schema::dropIfExists('albums_movies');
     }
 };
