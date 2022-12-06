@@ -36,5 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/dashboard/{user_id}',[\App\Http\Controllers\AlbumController::class,'getUserAlbum']);
+
+
 require __DIR__.'/auth.php';
 
