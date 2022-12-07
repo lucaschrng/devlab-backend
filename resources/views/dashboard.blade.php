@@ -9,12 +9,17 @@ $albums = \App\Models\Album::where('user_id',$user['id'])->get();
         <h2 class="text-3xl m-10"> Hi {{$user['username']}} !</h2>
             <ion-icon name="mail-unread-outline" class="text-accent" size="large"></ion-icon>
         </div>
-        <h2 class="underline decoration-accent text-3xl  m-10">My Albums</h2>
-        <div id="myAlbums" class="flex flex-row gap-5 m-10">
+        <div class=" flex flex-row justify-start items-center">
+            <h2 class="underline decoration-accent text-3xl  m-10">My Albums</h2>
+            <a href="">
+            <ion-icon name="add-circle-outline" class="text-accent" size="large"></ion-icon>
+            </a>
+        </div>
+        <div id="myAlbums" class="flex flex-row gap-2 m-10 w-6/12">
 
             @foreach($albums as $album)
                 <a href="/album/{{ $album['id'] }}">
-                <div class="flex flex-col justify-center items-center  w-3/6 m-10 gap-6">
+                <div class="flex flex-col justify-center items-center  w-fit m-4 gap-6">
                     <div >
                         <div class="flex relative">
                             <img src="https://image.tmdb.org/t/p/original/hBcY0fE9pfXzvVaY4GKarweriG2.jpg" alt="" class=" object-cover z-50">
