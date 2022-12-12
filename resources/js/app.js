@@ -13,7 +13,6 @@ let closeBtn = document.querySelector('.close-label');
 let resultsDiv = document.querySelector('.results');
 let resultsSection = document.querySelector('.results-section');
 let query = document.querySelector('.query');
-let sort = document.querySelector('.select-sort');
 let main = document.querySelector('main');
 let keywords = encodeURI(searchInput.value);
 let carousels = document.querySelectorAll('.carousel');
@@ -41,14 +40,6 @@ closeBtn.addEventListener('click', () => {
     main.classList.remove('hidden');
 })
 
-sort.addEventListener('change', () => {
-    keywords = encodeURI(searchInput.value);
-    query.innerHTML = searchInput.value;
-    if (keywords !== '') {
-        searchMovies(keywords, 1);
-    }
-})
-
 carousels.forEach((carousel, index) => {
     translate[index] = 0;
     let moviesDiv = carousel.children[2];
@@ -74,36 +65,13 @@ carousels.forEach((carousel, index) => {
     })
 })
 
-// if (bestMovies !== null) {
-//    bestNext.addEventListener('click', () => {
-//         if (translate < 19) {
-//             translate++;
-//         }
-//         console.log(document.querySelectorAll('.best-movies > *'));
-//         document.querySelectorAll('.best-movies > *').forEach(movieCard => {
-//             movieCard.style.translate = 'calc(' + (-translate * 100) + '% + ' + (-translate * 1.5) + 'rem)';
-//         });
-//     })
-//
-//     bestPrevious.addEventListener('click', () => {
-//         if (translate > 0) {
-//             translate--;
-//         }
-//         console.log(document.querySelectorAll('.best-movies > *'));
-//         document.querySelectorAll('.best-movies > *').forEach(movieCard => {
-//             movieCard.style.translate = 'calc(' + (-translate * 100) + '% + ' + (-translate * 1.5) + 'rem)';
-//         });
-//     })
-// }
-
 function searchMovies(keywords, page) {
-    axios.get('https://api.themoviedb.org/3/search/movie?api_key=b0c77f111b96a7cafe54d722516ddeff&language=en-US&query=' + keywords + '&page= ' + page + '&include_adult=false')
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&query=' + keywords + '&page= ' + page + '&include_adult=false')
     .then(function (response) {
         let elementsNb = resultsDiv.childElementCount;
         for (let i = 0; i < elementsNb; i++) {
             resultsDiv.removeChild(resultsDiv.firstChild)
         }
-        console.log(response.data.results);
         displayResults(response.data.results);
     })
     .catch(function (error) {
@@ -112,13 +80,6 @@ function searchMovies(keywords, page) {
 }
 
 function displayResults(movies) {
-    if (sort.value === 'name') {
-        movies.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sort.value === 'popularity') {
-        movies.sort((a, b) => b.popularity - a.popularity);
-    } else if (sort.value === 'rating') {
-        movies.sort((a, b) => b.vote_average - a.vote_average);
-    }
     movies.forEach(movie => {
         displayMovie(movie, resultsDiv);
     });

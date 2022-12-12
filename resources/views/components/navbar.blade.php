@@ -20,23 +20,6 @@
     <div class="w-full left-0 top-full mt-20">
         <div class="flex justify-between text-2xl">
             <h2 class="text-white text-opacity-50">Results for: <span class="query text-accent"></span></h2>
-            <div class="flex gap-6">
-                <p class="text-white text-opacity-50">
-                    Filter:
-                    <select name="pets" id="pet-select" class="bg-transparent cursor-pointer text-accent [&>*]:bg-bg [&>*]:text-white">
-                        <option value="">none</option>
-                    </select>
-                </p>
-                <p class="text-white text-opacity-50">
-                    Sort by:
-                    <select name="pets" id="pet-select" class="select-sort bg-transparent cursor-pointer text-accent [&>*]:bg-bg [&>*]:text-white">
-                        <option value="none">none</option>
-                        <option value="name">name</option>
-                        <option value="rating">rating</option>
-                        <option value="popularity">popularity</option>
-                    </select>
-                </p>
-            </div>
         </div>
     </div>
     <div class="results flex flex-wrap justify-between gap-6 max-w-full mt-10"></div>
