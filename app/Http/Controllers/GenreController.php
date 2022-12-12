@@ -29,7 +29,7 @@ class GenreController extends Controller
             'genre' => $genre,
             'filter' => $filter,
             'page' => $page,
-            'total_pages' => $movies['total_pages'] < 500 ? $movies['total_pages'] : 500
+            'total_pages' => min($movies['total_pages'], 500)
         ]);
     }
 }
