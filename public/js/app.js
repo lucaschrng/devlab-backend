@@ -2995,6 +2995,7 @@ __webpack_require__.r(__webpack_exports__);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/dist/browser/axios.cjs");
 var apiKey = 'b0c77f111b96a7cafe54d722516ddeff';
+var searchOpened = false;
 var searchInput = document.querySelector('#search-query');
 var searchBtn = document.querySelector('.search-label');
 var closeBtn = document.querySelector('.close-label');
@@ -3016,11 +3017,20 @@ searchInput.addEventListener('keyup', function () {
   }
 });
 searchBtn.addEventListener('click', function () {
+  searchOpened = true;
   resultsSection.classList.remove('hidden');
   main.classList.add('hidden');
   searchInput.focus();
 });
+searchInput.addEventListener('focus', function () {
+  console.log(searchOpened);
+  if (!searchOpened) {
+    searchBtn.click();
+    searchOpened = true;
+  }
+});
 closeBtn.addEventListener('click', function () {
+  searchOpened = false;
   resultsSection.classList.add('hidden');
   main.classList.remove('hidden');
 });

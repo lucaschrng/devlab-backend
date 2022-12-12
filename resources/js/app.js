@@ -7,6 +7,7 @@ window.Alpine = Alpine;
 const axios = require('axios');
 const apiKey = 'b0c77f111b96a7cafe54d722516ddeff';
 
+let searchOpened = false;
 let searchInput = document.querySelector('#search-query');
 let searchBtn = document.querySelector('.search-label');
 let closeBtn = document.querySelector('.close-label');
@@ -30,12 +31,22 @@ searchInput.addEventListener('keyup', () => {
 })
 
 searchBtn.addEventListener('click', () => {
+    searchOpened = true;
     resultsSection.classList.remove('hidden');
     main.classList.add('hidden');
     searchInput.focus();
 })
 
+searchInput.addEventListener('focus', () => {
+    console.log(searchOpened);
+    if (!searchOpened) {
+        searchBtn.click();
+        searchOpened = true;
+    }
+})
+
 closeBtn.addEventListener('click', () => {
+    searchOpened = false;
     resultsSection.classList.add('hidden');
     main.classList.remove('hidden');
 })
