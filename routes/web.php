@@ -20,4 +20,4 @@ Route::get('/', [HomeController::class, 'show']);
 
 Route::get('/movie/{movie_id}', [MovieController::class, 'show']);
 
-Route::get('genre/{genre_id}/{page}', [GenreController::class, 'show']);
+Route::get('genre/{genre}/{filter}/{page}', [GenreController::class, 'show']);
