@@ -30,7 +30,7 @@
                         </a>
                         <a class="flex flex-col items-center mt-2 text-xl font-medium" href="/movie/{{ $movie['id'] }}">
                             <span class="max-w-full whitespace-nowrap overflow-hidden text-ellipsis">{{ $movie['title'] }}</span>
-                            <span class="opacity-40">{{ is_null($movie['release_date']) ? 'TBD':substr($movie['release_date'], 0, 4) }}</span>
+                            <span class="opacity-40">{{ !array_key_exists('release_date', $movie) ? 'TBD':substr($movie['release_date'], 0, 4) }}</span>
                         </a>
                     </div>
                 @endforeach
