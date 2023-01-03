@@ -17,10 +17,11 @@
     </div>
 </nav>
 <div class="results-section hidden px-24 animate-fade">
-    <div class="w-full left-0 top-full mt-20">
-        <div class="flex justify-between text-2xl">
-            <h2 class="text-white text-opacity-50">Results for: <span class="query text-accent"></span></h2>
-        </div>
+    <div class="w-full left-0 top-full mt-20 flex justify-between text-2xl">
+        <h2 class="text-white text-opacity-50">Results for: <span class="query text-accent"></span></h2>
     </div>
+    <h2 class="text-2xl text-white mt-10">Users:</h2>
+    <div class="usersResults flex flex-wrap justify-between gap-6 max-w-full mt-10"></div>
+    <h2 class="text-2xl text-white mt-10">Movies:</h2>
     <div class="results flex flex-wrap justify-between gap-6 max-w-full mt-10"></div>
 </div>

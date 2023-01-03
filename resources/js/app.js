@@ -11,21 +11,20 @@ let searchOpened = false;
 let searchInput = document.querySelector('#search-query');
 let searchBtn = document.querySelector('.search-label');
 let closeBtn = document.querySelector('.close-label');
+let resultsUsers = document.querySelector('.usersResults');
 let resultsDiv = document.querySelector('.results');
 let resultsSection = document.querySelector('.results-section');
 let query = document.querySelector('.query');
 let main = document.querySelector('main');
 let keywords = encodeURI(searchInput.value);
 let carousels = document.querySelectorAll('.carousel');
-let bestMovies = document.querySelector('.best-movies');
-let bestPrevious = document.querySelector('.best-movies-container > .previous-button');
-let bestNext = document.querySelector('.best-movies-container > .next-button');
 let translate = [];
 
 searchInput.addEventListener('keyup', () => {
     keywords = encodeURI(searchInput.value);
     query.innerHTML = searchInput.value;
     if (keywords !== '') {
+        searchUsers(keywords);
         searchMovies(keywords, 1);
     }
 })
@@ -75,6 +74,49 @@ carousels.forEach((carousel, index) => {
         });
     })
 })
+function searchUsers(keywords) {
+    axios.get(window.location.origin + '/api/search/user/' + keywords)
+        .then(function (response) {
+            console.log(response);
+            let elementsNb = resultsUsers.childElementCount;
+            for (let i = 0; i < elementsNb; i++) {
+                resultsUsers.removeChild(resultsUsers.firstChild)
+            }
+            if (response.data.length > 0) {
+                displayUsers(response.data);
+            } else {
+                displayNoUser();
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
+
+function displayUsers(users) {
+    users.forEach(user => {
+        let userCard = document.createElement('a');
+        userCard.href = window.location.origin + '/user/' + user.username;
+        userCard.classList.add('min-w-[250px]', 'max-w-[250px]', 'bg-white/10', 'p-4', 'flex', 'items-center', 'rounded');
+        let userInitials = document.createElement('h2');
+        userInitials.classList.add('h-[80px]', 'min-w-[80px]', 'bg-white/20', 'rounded-full', 'leading-[80px]', 'text-center', 'text-4xl');
+        userInitials.innerHTML = user.firstName.substring(0, 1) + user.lastName.substring(0, 1);
+        let userNames = document.createElement('h3');
+        userNames.classList.add('text-xl', 'w-full', 'flex', 'justify-center');
+        userNames.innerHTML = user.firstName + '<br>' + user.lastName;
+        userCard.appendChild(userInitials);
+        userCard.appendChild(userNames);
+        resultsUsers.appendChild(userCard);
+    })
+    addEmptyDivs(resultsUsers);
+}
+
+function displayNoUser() {
+    let message = document.createElement('p');
+    message.classList.add('w-full', 'p-4', 'text-xl', 'text-center', 'bg-white/10', 'rounded');
+    message.innerHTML = 'No user found';
+    resultsUsers.appendChild(message);
+}
 
 function searchMovies(keywords, page) {
     axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&language=en-US&query=' + keywords + '&page= ' + page + '&include_adult=false')
@@ -94,7 +136,7 @@ function displayResults(movies) {
     movies.forEach(movie => {
         displayMovie(movie, resultsDiv);
     });
-    addEmptyDivs();
+    addEmptyDivs(resultsDiv);
 }
 
 function displayMovie(movie, container) {
@@ -128,11 +170,11 @@ function displayMovie(movie, container) {
     }
 }
 
-function addEmptyDivs() {
+function addEmptyDivs(parent) {
     for (let i = 0; i < 8; i++) {
         let emptyDiv = document.createElement('div');
         emptyDiv.classList.add('w-[250px]', 'h-0');
-        resultsDiv.appendChild(emptyDiv);
+        parent.appendChild(emptyDiv);
     }
 }
 

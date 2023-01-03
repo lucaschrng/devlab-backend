@@ -22,6 +22,11 @@ Route::get('/user',function (){
     return \App\Models\User::all();
 });
 
+// SEARCH USER
+Route::get('/search/user/{query}',function ($query){
+    return \App\Models\User::where('username', 'like', '%' . $query . '%')->orWhere('email', 'like', '%' . $query . '%')->orWhere('firstName', 'like', '%' . $query . '%')->orWhere('lastName', 'like', '%' . $query . '%')->get();
+});
+
 ///AJOUTER UN NOUVEAUX USER
 Route::post('/user',function (){
     request()->validate([
