@@ -125,7 +125,13 @@ function searchMovies(keywords, page) {
         for (let i = 0; i < elementsNb; i++) {
             resultsDiv.removeChild(resultsDiv.firstChild)
         }
-        displayResults(response.data.results);
+        console.log('hey');
+        console.log(response.data.results.length)
+        if (response.data.results.length > 0) {
+            displayResults(response.data.results);
+        } else {
+            displayNoMovie();
+        }
     })
     .catch(function (error) {
         console.log(error);
@@ -168,6 +174,13 @@ function displayMovie(movie, container) {
         movieCard.appendChild(infos);
         container.appendChild(movieCard);
     }
+}
+
+function displayNoMovie() {
+    let message = document.createElement('p');
+    message.classList.add('w-full', 'p-4', 'text-xl', 'text-center', 'bg-white/10', 'rounded');
+    message.innerHTML = 'No movie found';
+    resultsDiv.appendChild(message);
 }
 
 function addEmptyDivs(parent) {
