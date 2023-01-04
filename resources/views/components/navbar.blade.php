@@ -12,7 +12,13 @@
             </label>
         </div>
         <a href="{{ Auth::check() ? '/dashboard':'/login' }}" class="h-10 w-10 flex items-center rounded-full bg-lighter-bg">
-            <span class="w-full h-min text-center text-xl">L</span>
+            <span class="w-full h-min text-center text-xl">
+                @if(Auth::check())
+                    {{ Auth::user()->firstName[0] . Auth::user()->lastName[0] }}
+                @else
+                    <ion-icon name="log-in-outline" class="w-full flex justify-center items-center text-2xl opacity-50"></ion-icon>
+                @endif
+            </span>
         </a>
     </div>
 </nav>

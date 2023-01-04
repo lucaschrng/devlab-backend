@@ -12,6 +12,10 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                {{ csrf_field() }}
+                <button>Log Out</button>
+            </form>
         </div>
     </div>
 </x-layout>
