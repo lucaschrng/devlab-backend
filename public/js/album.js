@@ -8,8 +8,19 @@ var __webpack_exports__ = {};
 
 var albumSettings = document.querySelector(".settings-album");
 var settingsSpan = document.querySelector(".settings-span");
-albumSettings.addEventListener('click', function () {
-  settingsSpan.classList.toggle('hidden');
-});
+var addAlbum = document.querySelector(".add-album");
+var createAlbumSpan = document.querySelector(".create-album");
+console.log(addAlbum);
+if (addAlbum) {
+  addAlbum.addEventListener('click', function () {
+    createAlbumSpan.classList.toggle('hidden');
+    console.log("hey2");
+  });
+}
+if (albumSettings) {
+  albumSettings.addEventListener('click', function () {
+    settingsSpan.classList.toggle('hidden');
+  });
+}
 /******/ })()
 ;

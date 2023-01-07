@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -25,5 +26,14 @@ class AlbumController extends Controller
 
     }
 
+    public function create(Request $request){
+        dump("irjfoierjfioerjfoeirjfoier");
 
+        Album::create([
+            "name"=>$request->input('albumname'),
+            "user_id"=>$request->input('user_id'),
+            "is_public"=>true
+        ]);
+        return redirect('dashboard');
+    }
 }

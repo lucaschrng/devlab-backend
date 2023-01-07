@@ -5,7 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\AlbumController;
+use App\Models\Album;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/album/{album_id}',[\App\Http\Controllers\AlbumController::class,'show']);
+/*Route::post('/add', 'AlbumController@create')->name('album.create');*/
+/*Route::post('/add',[AlbumController::class,'create'])->name('add')->middleware('web');*/
 
+Route::post('/add',function (){
+    $request=request()->all();
+    Album::create([
+        "name"=>$request["albumname"],
+        "user_id"=>$request["user_id"],
+        "is_public"=>true
+    ]);
+    return redirect('dashboard');
+})->name("add");
 //Route::get('/delete/{album_id}',[\App\Http\Controllers\AlbumController::class,'delete']);
 require __DIR__.'/auth.php';
+
+
 

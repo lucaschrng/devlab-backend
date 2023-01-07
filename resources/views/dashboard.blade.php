@@ -1,6 +1,8 @@
 <?php
 $user = \Illuminate\Support\Facades\Auth::user();
 $albums = \App\Models\Album::where('user_id',$user['id'])->get();
+use App\Http\Controllers\AlbumController;
+
 
 ?>
 <x-layout>
@@ -11,11 +13,25 @@ $albums = \App\Models\Album::where('user_id',$user['id'])->get();
         </div>
         <div class=" flex flex-row justify-start items-center">
             <h2 class="underline decoration-accent text-3xl  m-10">My Albums</h2>
-            <a href="">
-            <ion-icon name="add-circle-outline" class="text-accent" size="large"></ion-icon>
-            </a>
+
+            <ion-icon name="add-circle-outline" class="text-accent add-album " size="large"></ion-icon>
+
+            <div class=" flex flex-col items-start justify-start gap-2 bg-white text-black p-6 ml-6 create-album hidden">
+                <h3 class="text-black">Create a new album</h3>
+
+                <form  action='{{ url('add')}}' method="post" class="flex-col flex">
+@csrf
+                    <input type="text" name="albumname"  placeholder="Choose a name for your album">
+                    <input type="hidden" name="user_id" value="{{$user["id"]}}">
+                    <label for="status">Private</label>
+                    <!---<input type="radio" name="status" id="">-->
+                    <input type="submit" value="Create" >
+                </form>
+
+            </div>
+
         </div>
-        <div id="myAlbums" class="flex flex-row gap-2 m-10 w-6/12">
+        <div id="myAlbums" class="flex flex-row gap-2 m-10 w-2/12 flex-wrap">
 
             @foreach($albums as $album)
                 <a href="/album/{{ $album['id'] }}">
@@ -53,6 +69,21 @@ $albums = \App\Models\Album::where('user_id',$user['id'])->get();
             <input type="submit" value="Log Out">
         </form>
     </main>
-    <script src="js/album.js"></script>
+    <script src="/js/album.js"></script>
 </x-layout>
 
+
+<?php
+
+/*if($_POST){
+    Album::create([
+        "name"=>$_POST["albumname"],
+        "user_id"=>$user['id'],
+        "is_public"=>true
+    ]);
+    return redirect('dashboard');
+
+
+}*/
+
+?>
