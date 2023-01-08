@@ -20,8 +20,10 @@ $albums = \App\Models\Album::where('id',$album)->get();
                         </label>
 
                     </div>
-                <form action="{{route('delete')}}" method="DELETE">
-                    <input type="hidden" value="{{$album}}">
+                <form action="{{route('delete')}}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <input type="hidden" value="{{$album}}" name="album_id">
                     <input type="submit" value="Delete Album" class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30">
                 </form>
             </div>

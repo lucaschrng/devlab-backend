@@ -16,8 +16,8 @@ class AlbumController extends Controller
 
     }
 
-    public function delete($album_id){
-        $album = \App\Models\Album::find($album_id);
+    public function delete(Request $request){
+        $album = \App\Models\Album::find($request->input('album_id'));
         if(!$album){
             return response("Not Found",404);
         }
