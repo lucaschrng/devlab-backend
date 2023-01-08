@@ -1,25 +1,24 @@
 <x-layout>
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css"/>
     <main class="p-24">
-        <div class="flex flex-row justify-start items-center gap-4 w-fit ">
+        <div class="relative flex flex-row justify-start items-center gap-4 w-min">
             <h1 class="text-3xl font-semibold">{{ $album->name }}</h1>
             <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 cursor-pointer"></ion-icon>
 
-            <div class="settings-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
-            justify-center items-start">
-                <p class="text-accent text-xl">Options</p>
-                <div class="flex flex-row gap-6">
-                    <p>Public</p>
-                    <label for="toggle-example" class="flex items-center cursor-pointer relative mb-4">
+            <div class="settings-span bg-lighter-bg p-4 flex flex-col gap-2 hidden z-20 absolute ml-4 top-0 left-full justify-center items-start rounded">
+                <h3 class="text-xl font-semibold text-accent mb-4">Options</h3>
+                <div class="flex flex-row justify-between w-full">
+                    <p class="text-lg text-white/80">Public</p>
+                    <label for="toggle-example" class="flex items-center cursor-pointer relative">
                         <input type="checkbox" id="toggle-example" class="sr-only" {{ $album->is_public ? 'checked':'' }}>
                         <div class="toggle-bg bg-gray-500 border-2 border-gray-500 h-6 w-11 rounded-full "></div>
                     </label>
                 </div>
 
-                <div class="flex flex-col gap-4 ">
-                    <div class="flex flex-row items-center justify-center gap-6">
-                        <p>Share</p>
-                        <ion-icon name="share-outline" size="medium"></ion-icon>
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="flex flex-row items-center justify-between w-full">
+                        <p class="text-lg text-white/80">Share</p>
+                        <ion-icon name="share-outline" class="text-2xl"></ion-icon>
                     </div>
                 </div>
                 <form action="{{route('delete')}}" method="POST">
@@ -27,7 +26,7 @@
                     @csrf
                     <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">
                     <input type="submit" value="Delete Album"
-                           class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30">
+                           class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30 rounded mt-4 cursor-pointer">
                 </form>
             </div>
 
