@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\Controller;
+use App\Models\Album;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -49,8 +51,20 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        dump($user);
+
         event(new Registered($user));
+
+         Album::create([
+            "name"=>"Visionnés",
+            "user_id"=>$user['id'],
+             "is_public"=>true
+        ]);
+        Album::create([
+            "name"=>"Liste d'envies",
+            "user_id"=>$user['id'],
+            "is_public"=>true
+        ]);
+        //url('/album/liked/$user["id"]');
 
         Auth::login($user);
 

@@ -6,8 +6,13 @@ use App\Http\Controllers\MovieController;
 
 use App\Http\Controllers\ProfileController;
 
+
 use App\Http\Controllers\UserController;
 use App\Models\AlbumMovie;
+
+use App\Http\Controllers\AlbumController;
+use App\Models\Album;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,4 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+
+Route::get('/album/{album_id}', [\App\Http\Controllers\AlbumController::class, 'show']);
+
+Route::post("/add", [AlbumController::class, 'created'])->name("add");
+
+Route::delete('/delete', [\App\Http\Controllers\AlbumController::class, 'delete'])->name("delete");
 require __DIR__ . '/auth.php';

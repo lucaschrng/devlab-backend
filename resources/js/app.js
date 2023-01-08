@@ -235,5 +235,7 @@ if (addMovieButton) {
     })
 }
 
+
+
 Alpine.start();
 
