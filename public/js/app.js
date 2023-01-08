@@ -3009,19 +3009,29 @@ var carousels = document.querySelectorAll('.carousel');
 var translate = [];
 var addMovieButton = document.querySelector('.add-movie-button');
 var addToAlbum = document.querySelectorAll('.add-to-album');
+var addAlbumIcon = document.querySelectorAll('.add-album-icon');
 var albumIds = document.querySelectorAll('.album-id');
 var movieId = document.querySelector('.movie-id');
 var addPanel = document.querySelector('.add-panel');
 var escape = document.querySelector('.escape');
 if (movieId) {
   movieId = movieId.value;
-  var index = 0;
-  addToAlbum.forEach(function (addToAlbumButton) {
+  var areAdded = document.querySelectorAll('.is-added');
+  addToAlbum.forEach(function (addToAlbumButton, index) {
     var albumId = albumIds[index].value;
+    var isAdded = areAdded[index].value == 1;
     addToAlbumButton.addEventListener('click', function () {
-      addMovieToAlbum(movieId, albumId);
+      if (isAdded) {
+        removeMovieAlbum(movieId, albumId);
+        isAdded = !isAdded;
+        console.log(index, addAlbumIcon[index]);
+        addAlbumIcon[index].attributes['name'].value = 'add-outline';
+      } else {
+        addMovieToAlbum(movieId, albumId);
+        isAdded = !isAdded;
+        addAlbumIcon[index].attributes['name'].value = 'remove-outline';
+      }
     });
-    index++;
   });
   addMovieButton.addEventListener('click', function () {
     addPanel.classList.remove('hidden');
@@ -3036,6 +3046,11 @@ function addMovieToAlbum(movieId, albumId) {
   axios.post(window.location.origin + '/api/add-movie?movie_id=' + movieId + '&album_id=' + albumId).then(function (response) {
     console.log(response);
   })["catch"](function (error) {
+    console.log(error);
+  });
+}
+function removeMovieAlbum(movieId, albumId) {
+  axios["delete"](window.location.origin + '/api/add-movie?movie_id=' + movieId + '&album_id=' + albumId)["catch"](function (error) {
     console.log(error);
   });
 }

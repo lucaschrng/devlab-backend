@@ -21,6 +21,7 @@ let carousels = document.querySelectorAll('.carousel');
 let translate = [];
 let addMovieButton = document.querySelector('.add-movie-button');
 let addToAlbum = document.querySelectorAll('.add-to-album');
+let addAlbumIcon = document.querySelectorAll('.add-album-icon');
 let albumIds = document.querySelectorAll('.album-id');
 let movieId = document.querySelector('.movie-id');
 let addPanel = document.querySelector('.add-panel');
@@ -28,13 +29,22 @@ let escape = document.querySelector('.escape');
 
 if (movieId) {
     movieId = movieId.value;
-    let index = 0;
-    addToAlbum.forEach(addToAlbumButton => {
+    let areAdded = document.querySelectorAll('.is-added');
+    addToAlbum.forEach((addToAlbumButton, index) => {
         let albumId = albumIds[index].value;
+        let isAdded = areAdded[index].value == 1;
         addToAlbumButton.addEventListener('click', () => {
-            addMovieToAlbum(movieId, albumId);
+            if (isAdded) {
+                removeMovieAlbum(movieId, albumId);
+                isAdded = !isAdded;
+                console.log(index, addAlbumIcon[index])
+                addAlbumIcon[index].attributes['name'].value = 'add-outline';
+            } else {
+                addMovieToAlbum(movieId, albumId);
+                isAdded = !isAdded;
+                addAlbumIcon[index].attributes['name'].value = 'remove-outline';
+            }
         });
-        index++;
     })
 
     addMovieButton.addEventListener('click', () => {
@@ -53,6 +63,13 @@ function addMovieToAlbum(movieId, albumId) {
         .then(function (response) {
             console.log(response);
         })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
+
+function removeMovieAlbum(movieId, albumId) {
+    axios.delete(window.location.origin + '/api/add-movie?movie_id=' + movieId + '&album_id=' + albumId)
         .catch(function (error) {
             console.log(error);
         })

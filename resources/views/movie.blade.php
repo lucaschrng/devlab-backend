@@ -65,7 +65,8 @@
                                                         <ion-icon name="lock-closed" class="opacity-60"></ion-icon>
                                                     @endif
                                                 </div>
-                                                <button class="add-to-album flex items-center text-accent"><ion-icon name="add-outline" class="text-2xl hover:bg-black/20 rounded cursor-pointer"></ion-icon></button>
+                                                <input type="hidden" value="{{ $album->isAdded ? 1:0 }}" class="is-added">
+                                                <button class="add-to-album flex items-center text-accent"><ion-icon name="{{ $album->isAdded ? 'remove':'add' }}-outline" class="add-album-icon text-2xl hover:bg-black/20 rounded cursor-pointer"></ion-icon></button>
                                             </li>
                                         @endforeach
                                     </ul>

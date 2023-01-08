@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\AlbumsMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -16,7 +17,11 @@ class MovieController extends Controller
         $albums = [];
         if (Auth::check()) {
             $albums = Album::where('user_id', Auth::user()['id'])->get();
+            foreach ($albums as $album) {
+                $album->isAdded = AlbumsMovie::where('album_id', $album->id)->where('movie_id', $movie_id)->get()->count() > 0;
+            }
         }
+
         return view('movie', [
             'movie' => $movie->json(),
             'actors' => $people->json()['cast'],

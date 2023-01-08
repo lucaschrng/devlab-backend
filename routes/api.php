@@ -90,6 +90,14 @@ Route::post('/add-movie', function () {
     $albumMovie->save();
 });
 
+Route::delete('/add-movie', function () {
+    $data = request()->all();
+    $albumMovie = AlbumsMovie::where('album_id', $data['album_id'])->where('movie_id', $data['movie_id'])->get();
+    foreach ($albumMovie as $album) {
+        $album->delete();
+    }
+});
+
 Route::put('/album/{albumId}', function ($albumId) {
     $album = Album::find($albumId);
     $data = request()->all();
