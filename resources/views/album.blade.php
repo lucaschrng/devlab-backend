@@ -1,12 +1,12 @@
 <?php
-$albums = \App\Models\Album::where('user_id',['id'])->get();
+$albums = \App\Models\Album::where('id',$album)->get();
 ?>
 
 <x-layout>
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css" />
     <main>
         <div class="flex flex-row m-10 justify-start items-center gap-4 w-fit ">
-            <h1 class="underline decoration-accent text-xl">VISIONNÉES</h1>
+            <h1 class="underline decoration-accent text-xl">{{$albums[0]["name"]}}</h1>
             <ion-icon name="settings-outline" class="settings-album" size="large"></ion-icon>
 
             <div  class="settings-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-40 top-28
@@ -20,7 +20,8 @@ $albums = \App\Models\Album::where('user_id',['id'])->get();
                         </label>
 
                     </div>
-                <form action="">
+                <form action="{{route('delete')}}" method="DELETE">
+                    <input type="hidden" value="{{$album}}">
                     <input type="submit" value="Delete Album" class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30">
                 </form>
             </div>

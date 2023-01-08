@@ -11,7 +11,7 @@ class AlbumController extends Controller
 
         //return view('album');
         $movies = \App\Models\AlbumsMovie::where('album_id',$album_id)->get();
-        return view('album', ["movies"=>$movies]);
+        return view('album', ["movies"=>$movies,'album'=>$album_id]);
 
 
     }
@@ -22,11 +22,12 @@ class AlbumController extends Controller
             return response("Not Found",404);
         }
         $album->delete();
-        return response(":)",200);
+        return redirect('dashboard');
+
 
     }
 
-    public function create(Request $request){
+    public function created(Request $request){
         dump("irjfoierjfioerjfoeirjfoier");
 
         Album::create([

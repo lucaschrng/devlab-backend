@@ -2,6 +2,7 @@
 $user = \Illuminate\Support\Facades\Auth::user();
 $albums = \App\Models\Album::where('user_id',$user['id'])->get();
 use App\Http\Controllers\AlbumController;
+use App\Models\Album;
 
 
 ?>
@@ -19,7 +20,7 @@ use App\Http\Controllers\AlbumController;
             <div class=" flex flex-col items-start justify-start gap-2 bg-white text-black p-6 ml-6 create-album hidden">
                 <h3 class="text-black">Create a new album</h3>
 
-                <form  action='{{ url('add')}}' method="post" class="flex-col flex">
+                <form  action='{{ route('add')}}' method="POST" class="flex-col flex">
 @csrf
                     <input type="text" name="albumname"  placeholder="Choose a name for your album">
                     <input type="hidden" name="user_id" value="{{$user["id"]}}">
@@ -34,7 +35,7 @@ use App\Http\Controllers\AlbumController;
         <div id="myAlbums" class="flex flex-row gap-2 m-10 w-2/12 flex-wrap">
 
             @foreach($albums as $album)
-                <a href="/album/{{ $album['id'] }}">
+               <a href="/album/{{ $album['id'] }}">
                 <div class="flex flex-col justify-center items-center  w-fit m-4 gap-6">
                     <div >
                         <div class="flex relative">
