@@ -9,14 +9,18 @@
                 <input type="hidden" class="user-id" value="{{ Auth::user()->id }}">
             @endif
             <input type="hidden" class="is-liked" value="{{ $isLiked ? 1:0 }}">
-            <div class="flex text-red-500 items-center">
-                <span class="likes text-xl font-semibold opacity-70">{{ $likes }}</span>
-                @if(Auth::check())
-                    <ion-icon name="heart{{ $isLiked ? '':'-outline' }}" class="like-button text-3xl opacity-70 cursor-pointer"></ion-icon>
-                @else
-                    <a href="{{ url('') . '/login' }}" class="flex items-center"><ion-icon name="heart-outline" class="text-3xl opacity-70 cursor-pointer"></ion-icon></a>
-                @endif
-            </div>
+
+            @if($album->is_public)
+                <div class="flex text-red-500 items-center">
+                    <span class="likes text-xl font-semibold opacity-70">{{ $likes }}</span>
+                        @if(Auth::check())
+                            <ion-icon name="heart{{ $isLiked ? '':'-outline' }}" class="like-button text-3xl opacity-70 cursor-pointer"></ion-icon>
+                        @else
+                            <a href="{{ url('') . '/login' }}" class="flex items-center"><ion-icon name="heart-outline" class="text-3xl opacity-70 cursor-pointer"></ion-icon></a>
+                        @endif
+                </div>
+            @endif
+
             @if(Auth::check())
                 @if(Auth::user()->id == $album->user_id)
                     <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 cursor-pointer"></ion-icon>
