@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\AlbumsLike;
 use App\Models\AlbumsMovie;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use function PHPUnit\Framework\isNull;
 
 class AlbumController extends Controller
 {
@@ -19,10 +23,13 @@ class AlbumController extends Controller
             $movie->date = date('Y', strtotime($movie_data['release_date']));
             $movie->poster_path = $movie_data['poster_path'];
         }
-
+        $user= User::find(Album::where('id',$album_id)->get()[0]->user_id);
+        $isLiked = isset(AlbumsLike::where('album_id', $album_id)->where('user_id', Auth::check() ? Auth::user()->id:'')->get()[0]);
         return view('album', [
             "movies" => $movies,
-            'album' => Album::where('id',$album_id)->get()[0]
+            'album' => Album::where('id',$album_id)->get()[0],
+            'username' => $user->username,
+            'isLiked' => $isLiked
         ]);
     }
 

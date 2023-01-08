@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Album;
+use App\Models\AlbumsLike;
 use App\Models\AlbumsMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -95,4 +96,22 @@ Route::put('/album/{albumId}', function ($albumId) {
 
     $album->is_public = $data['isPublic'];
     $album->update();
+});
+
+Route::post('/like', function () {
+   $data = request()->all();
+   $like = new AlbumsLike;
+
+   $like->album_id = $data['album_id'];
+   $like->user_id = $data['user_id'];
+
+   $like->save();
+});
+
+Route::delete('/like', function () {
+    $data = request()->all();
+    $likes = AlbumsLike::where('album_id', $data['album_id'])->where('user_id', $data['user_id'])->get();
+    foreach ($likes as $like) {
+        $like->delete();
+    }
 });
