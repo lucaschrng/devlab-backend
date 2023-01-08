@@ -11,14 +11,12 @@ let createAlbumSpan = document.querySelector(".create-album")
 
 let likeButton = document.querySelector('.like-button');
 let isLiked = document.querySelector('.is-liked');
-let albumId = document.querySelector('.album-id').value;
 let userId = document.querySelector('.user-id');
+let likes = document.querySelector('.likes');
 
 if (addAlbum){
     addAlbum.addEventListener('click',function (){
         createAlbumSpan.classList.toggle('hidden');
-        console.log("hey2")
-
     })
 }
 
@@ -36,19 +34,24 @@ if(albumSettings){
 }
 
 if (likeButton) {
+    let albumId = document.querySelector('.album-id').value;
     isLiked = isLiked.value == '1';
-    console.log(isLiked);
+    let likesCount = parseInt(likes.innerHTML);
     userId = userId.value;
     likeButton.addEventListener('click', () => {
         isLiked = !isLiked;
         if (isLiked) {
             likeButton.name = 'heart';
+            likesCount++;
+            likes.innerHTML = likesCount;
             axios.post(window.location.origin + '/api/like?album_id=' + albumId + '&user_id=' + userId)
                 .catch(function(error) {
                     console.log(error);
                 })
         } else {
             likeButton.name = 'heart-outline';
+            likesCount--;
+            likes.innerHTML = likesCount;
             axios.delete(window.location.origin + '/api/like?album_id=' + albumId + '&user_id=' + userId)
                 .catch(function (error) {
                     console.log(error);

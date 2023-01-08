@@ -3,6 +3,20 @@
     <main class="p-24">
         <div class="relative flex flex-row justify-start items-center gap-4 w-min">
             <h1 class="text-3xl font-semibold">{{ $album->name }}</h1>
+
+            <input type="hidden" value="{{ $album->id }}" class="album-id">
+            @if(Auth::check())
+                <input type="hidden" class="user-id" value="{{ Auth::user()->id }}">
+            @endif
+            <input type="hidden" class="is-liked" value="{{ $isLiked ? 1:0 }}">
+            <div class="flex text-red-500 items-center">
+                <span class="likes text-xl font-semibold opacity-70">{{ $likes }}</span>
+                @if(Auth::check())
+                    <ion-icon name="heart{{ $isLiked ? '':'-outline' }}" class="like-button text-3xl opacity-70 cursor-pointer"></ion-icon>
+                @else
+                    <a href="{{ url('') . '/login' }}" class="flex items-center"><ion-icon name="heart-outline" class="text-3xl opacity-70 cursor-pointer"></ion-icon></a>
+                @endif
+            </div>
             @if(Auth::check())
                 @if(Auth::user()->id == $album->user_id)
                     <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 cursor-pointer"></ion-icon>
@@ -32,10 +46,7 @@
                         </form>
                     </div>
                 @else
-                    <input type="hidden" value="{{ $album->id }}" class="album-id">
-                    <input type="hidden" class="user-id" value="{{ Auth::user()->id }}">
-                    <input type="hidden" class="is-liked" value="{{ $isLiked ? 1:0 }}">
-                    <ion-icon name="heart{{ $isLiked ? '':'-outline' }}" class="like-button text-3xl opacity-50 cursor-pointer"></ion-icon>
+                    <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">
                 @endif
             @endif
         </div>

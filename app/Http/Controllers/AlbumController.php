@@ -25,11 +25,13 @@ class AlbumController extends Controller
         }
         $user= User::find(Album::where('id',$album_id)->get()[0]->user_id);
         $isLiked = isset(AlbumsLike::where('album_id', $album_id)->where('user_id', Auth::check() ? Auth::user()->id:'')->get()[0]);
+        $likes = AlbumsLike::where('album_id', $album_id)->get()->count();
         return view('album', [
             "movies" => $movies,
             'album' => Album::where('id',$album_id)->get()[0],
             'username' => $user->username,
-            'isLiked' => $isLiked
+            'isLiked' => $isLiked,
+            'likes' => $likes
         ]);
     }
 

@@ -5195,39 +5195,43 @@ var addAlbum = document.querySelector(".add-album");
 var createAlbumSpan = document.querySelector(".create-album");
 var likeButton = document.querySelector('.like-button');
 var isLiked = document.querySelector('.is-liked');
-var albumId = document.querySelector('.album-id').value;
 var userId = document.querySelector('.user-id');
+var likes = document.querySelector('.likes');
 if (addAlbum) {
   addAlbum.addEventListener('click', function () {
     createAlbumSpan.classList.toggle('hidden');
-    console.log("hey2");
   });
 }
 if (albumSettings) {
-  var _albumId = document.querySelector('.album-id').value;
+  var albumId = document.querySelector('.album-id').value;
   albumSettings.addEventListener('click', function () {
     settingsSpan.classList.toggle('hidden');
   });
   publicToggle.addEventListener('change', function () {
-    axios.put(window.location.origin + '/api/album/' + _albumId + '?isPublic=' + (publicToggle.checked ? 1 : 0))["catch"](function (error) {
+    axios.put(window.location.origin + '/api/album/' + albumId + '?isPublic=' + (publicToggle.checked ? 1 : 0))["catch"](function (error) {
       console.log(error);
     });
   });
 }
 if (likeButton) {
+  var _albumId = document.querySelector('.album-id').value;
   isLiked = isLiked.value == '1';
-  console.log(isLiked);
+  var likesCount = parseInt(likes.innerHTML);
   userId = userId.value;
   likeButton.addEventListener('click', function () {
     isLiked = !isLiked;
     if (isLiked) {
       likeButton.name = 'heart';
-      axios.post(window.location.origin + '/api/like?album_id=' + albumId + '&user_id=' + userId)["catch"](function (error) {
+      likesCount++;
+      likes.innerHTML = likesCount;
+      axios.post(window.location.origin + '/api/like?album_id=' + _albumId + '&user_id=' + userId)["catch"](function (error) {
         console.log(error);
       });
     } else {
       likeButton.name = 'heart-outline';
-      axios["delete"](window.location.origin + '/api/like?album_id=' + albumId + '&user_id=' + userId)["catch"](function (error) {
+      likesCount--;
+      likes.innerHTML = likesCount;
+      axios["delete"](window.location.origin + '/api/like?album_id=' + _albumId + '&user_id=' + userId)["catch"](function (error) {
         console.log(error);
       });
     }
