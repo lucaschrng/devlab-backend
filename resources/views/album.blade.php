@@ -6,10 +6,10 @@ $albums = \App\Models\Album::where('id',$album)->get();
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css" />
     <main>
         <div class="flex flex-row m-10 justify-start items-center gap-4 w-fit ">
-            <h1 class="underline decoration-accent text-xl">{{$albums[0]["name"]}}</h1>
+            <h1 class="border-b-2  decoration-accent text-xl">{{$albums[0]["name"]}}</h1>
             <ion-icon name="settings-outline" class="settings-album" size="large"></ion-icon>
 
-            <div  class="settings-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-40 top-28
+            <div  class="settings-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
             justify-center items-start">
                 <p class="text-accent text-xl">Options</p>
                     <div class="flex flex-row gap-6">
@@ -20,6 +20,13 @@ $albums = \App\Models\Album::where('id',$album)->get();
                         </label>
 
                     </div>
+
+                <div class="flex flex-col gap-4 ">
+                    <div class="flex flex-row items-center justify-center gap-6">
+                    <p>Share</p>
+                    <ion-icon name="share-outline" size="medium"></ion-icon>
+                    </div>
+                </div>
                 <form action="{{route('delete')}}" method="POST">
                     @method('DELETE')
                     @csrf

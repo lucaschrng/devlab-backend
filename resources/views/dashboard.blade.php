@@ -25,7 +25,9 @@ use App\Models\Album;
                     <input type="text" name="albumname"  placeholder="Choose a name for your album">
                     <input type="hidden" name="user_id" value="{{$user["id"]}}">
                     <label for="status">Private</label>
-                    <!---<input type="radio" name="status" id="">-->
+                    <input type="radio" name="status" id="" value="0">
+                    <label for="status">Public</label>
+                    <input type="radio" name="status" id="" value="1">
                     <input type="submit" value="Create" >
                 </form>
 

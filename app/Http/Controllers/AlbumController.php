@@ -33,7 +33,7 @@ class AlbumController extends Controller
         Album::create([
             "name"=>$request->input('albumname'),
             "user_id"=>$request->input('user_id'),
-            "is_public"=>true
+            "is_public"=>$request->input('status')
         ]);
         return redirect('dashboard');
     }
