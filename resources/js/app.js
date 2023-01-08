@@ -37,7 +37,6 @@ if (movieId) {
             if (isAdded) {
                 removeMovieAlbum(movieId, albumId);
                 isAdded = !isAdded;
-                console.log(index, addAlbumIcon[index])
                 addAlbumIcon[index].attributes['name'].value = 'add-outline';
             } else {
                 addMovieToAlbum(movieId, albumId);

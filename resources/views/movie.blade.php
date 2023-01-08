@@ -70,7 +70,7 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                    <button class="create-album text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full">Create album</button>
+                                    <a href="{{ url('') . '/dashboard' }}" class="create-album text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full">Manage albums</a>
                                 @else
                                     <a href="{{ url('') }}/login" class="create-album text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full">Log In</a>
                                 @endif
