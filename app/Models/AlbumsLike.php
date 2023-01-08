@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AlbumsLike extends Model
 {
     use HasFactory;
+
+    public function album() {
+        return $this->belongsTo(Album::class);
+    }
 }

@@ -9,4 +9,8 @@ class Album extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function AlbumsLike() {
+        return $this->hasMany(AlbumsLike::class);
+    }
 }
