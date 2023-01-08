@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\AlbumsMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -27,8 +28,12 @@ class AlbumController extends Controller
 
     public function delete(Request $request){
         $album = \App\Models\Album::find($request->input('album_id'));
+        $movies = AlbumsMovie::where('album_id', $request->input('album_id'))->get();
         if(!$album){
             return response("Not Found",404);
+        }
+        foreach ($movies as $movie) {
+            $movie->delete();
         }
         $album->delete();
         return redirect('dashboard');
