@@ -19,6 +19,44 @@ let main = document.querySelector('main');
 let keywords = encodeURI(searchInput.value);
 let carousels = document.querySelectorAll('.carousel');
 let translate = [];
+let addMovieButton = document.querySelector('.add-movie-button');
+let addToAlbum = document.querySelectorAll('.add-to-album');
+let albumIds = document.querySelectorAll('.album-id');
+let movieId = document.querySelector('.movie-id');
+let addPanel = document.querySelector('.add-panel');
+let escape = document.querySelector('.escape');
+
+if (movieId) {
+    movieId = movieId.value;
+    let index = 0;
+    addToAlbum.forEach(addToAlbumButton => {
+        let albumId = albumIds[index].value;
+        addToAlbumButton.addEventListener('click', () => {
+            addMovieToAlbum(movieId, albumId);
+        });
+        index++;
+    })
+
+    addMovieButton.addEventListener('click', () => {
+            addPanel.classList.remove('hidden');
+            escape.classList.remove('hidden');
+    })
+
+    escape.addEventListener('click', () => {
+            addPanel.classList.add('hidden');
+            escape.classList.add('hidden');
+    })
+}
+
+function addMovieToAlbum(movieId, albumId) {
+    axios.post(window.location.origin + '/api/add-movie?movie_id=' + movieId + '&album_id=' + albumId)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+}
 
 searchInput.addEventListener('keyup', () => {
     keywords = encodeURI(searchInput.value);
@@ -189,6 +227,12 @@ function addEmptyDivs(parent) {
         emptyDiv.classList.add('w-[250px]', 'h-0');
         parent.appendChild(emptyDiv);
     }
+}
+
+if (addMovieButton) {
+    addMovieButton.addEventListener('click', () => {
+
+    })
 }
 
 Alpine.start();

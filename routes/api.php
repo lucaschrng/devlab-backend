@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AlbumsMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -75,4 +76,14 @@ Route::put('/user/{id}',function ($id){
     ]);
     $data =request()->only(['nom','image_url','description','programme','year','date_debut','date_fin']);
     $user->update($data);
+});
+
+Route::post('/add-movie', function () {
+    $data = request()->all();
+    $albumMovie = new AlbumsMovie;
+
+    $albumMovie->album_id = $data['album_id'];
+    $albumMovie->movie_id = $data['movie_id'];
+
+    $albumMovie->save();
 });

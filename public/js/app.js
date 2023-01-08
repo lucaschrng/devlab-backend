@@ -3007,6 +3007,38 @@ var main = document.querySelector('main');
 var keywords = encodeURI(searchInput.value);
 var carousels = document.querySelectorAll('.carousel');
 var translate = [];
+var addMovieButton = document.querySelector('.add-movie-button');
+var addToAlbum = document.querySelectorAll('.add-to-album');
+var albumIds = document.querySelectorAll('.album-id');
+var movieId = document.querySelector('.movie-id');
+var addPanel = document.querySelector('.add-panel');
+var escape = document.querySelector('.escape');
+if (movieId) {
+  movieId = movieId.value;
+  var index = 0;
+  addToAlbum.forEach(function (addToAlbumButton) {
+    var albumId = albumIds[index].value;
+    addToAlbumButton.addEventListener('click', function () {
+      addMovieToAlbum(movieId, albumId);
+    });
+    index++;
+  });
+  addMovieButton.addEventListener('click', function () {
+    addPanel.classList.remove('hidden');
+    escape.classList.remove('hidden');
+  });
+  escape.addEventListener('click', function () {
+    addPanel.classList.add('hidden');
+    escape.classList.add('hidden');
+  });
+}
+function addMovieToAlbum(movieId, albumId) {
+  axios.post(window.location.origin + '/api/add-movie?movie_id=' + movieId + '&album_id=' + albumId).then(function (response) {
+    console.log(response);
+  })["catch"](function (error) {
+    console.log(error);
+  });
+}
 searchInput.addEventListener('keyup', function () {
   keywords = encodeURI(searchInput.value);
   query.innerHTML = searchInput.value;
@@ -3160,6 +3192,9 @@ function addEmptyDivs(parent) {
     emptyDiv.classList.add('w-[250px]', 'h-0');
     parent.appendChild(emptyDiv);
   }
+}
+if (addMovieButton) {
+  addMovieButton.addEventListener('click', function () {});
 }
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 

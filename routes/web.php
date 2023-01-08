@@ -7,6 +7,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\UserController;
+use App\Models\AlbumMovie;
 use Illuminate\Support\Facades\Route;
 
 /*
