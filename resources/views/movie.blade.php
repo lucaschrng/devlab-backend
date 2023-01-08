@@ -49,26 +49,30 @@
                             </p>
                         </div>
                         <div class="relative">
-                            <button class="add-movie-button flex items-center"><ion-icon name="add-outline" class="text-3xl bg-lighter-bg rounded"></ion-icon></button>
+                            <button class="add-movie-button flex items-center"><ion-icon name="add-outline" class="text-3xl bg-lighter-bg hover:bg-white/20 rounded"></ion-icon></button>
                             <div class="add-panel hidden w-[300px] absolute top-0 left-[-316px] bg-lighter-bg p-4 rounded flex flex-col gap-4 z-10 border-white/10 border">
-                                <h3 class="text-xl font-semibold text-accent mb-4">Add to album</h3>
-                                <ul class="flex flex-col gap-2">
-                                    @foreach($albums as $album)
-                                        <li class="flex justify-between items-center text-lg text-white/80">
-                                            <input type="hidden" value="{{ $album->id }}" class="album-id">
-                                            <div class="flex items-center gap-2">
-                                                {{ $album->name }}
-                                                @if($album->is_public)
-                                                    <ion-icon name="lock-open" class="opacity-60"></ion-icon>
-                                                @else
-                                                    <ion-icon name="lock-closed" class="opacity-60"></ion-icon>
-                                                @endif
-                                            </div>
-                                            <button class="add-to-album flex items-center text-accent"><ion-icon name="add-outline" class="text-2xl cursor-pointer"></ion-icon></button>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <button class="create-album text-center font-semibold text-white/60 bg-white/10 p-2 rounded w-full">Create album</button>
+                                @if(Auth::check())
+                                    <h3 class="text-xl font-semibold text-accent mb-4">Add to album</h3>
+                                    <ul class="flex flex-col gap-2">
+                                        @foreach($albums as $album)
+                                            <li class="flex justify-between items-center text-lg text-white/80">
+                                                <input type="hidden" value="{{ $album->id }}" class="album-id">
+                                                <div class="flex items-center gap-2">
+                                                    {{ $album->name }}
+                                                    @if($album->is_public)
+                                                        <ion-icon name="lock-open" class="opacity-60"></ion-icon>
+                                                    @else
+                                                        <ion-icon name="lock-closed" class="opacity-60"></ion-icon>
+                                                    @endif
+                                                </div>
+                                                <button class="add-to-album flex items-center text-accent"><ion-icon name="add-outline" class="text-2xl hover:bg-black/20 rounded cursor-pointer"></ion-icon></button>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    <button class="create-album text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full">Create album</button>
+                                @else
+                                    <a href="{{ url('') }}/login" class="create-album text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full">Log In</a>
+                                @endif
                             </div>
                             <div class="escape hidden w-screen h-screen fixed left-0 top-0"></div>
                         </div>
