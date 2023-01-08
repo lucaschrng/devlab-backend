@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Album;
 use App\Models\AlbumsMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -86,4 +87,12 @@ Route::post('/add-movie', function () {
     $albumMovie->movie_id = $data['movie_id'];
 
     $albumMovie->save();
+});
+
+Route::put('/album/{albumId}', function ($albumId) {
+    $album = Album::find($albumId);
+    $data = request()->all();
+
+    $album->is_public = $data['isPublic'];
+    $album->update();
 });

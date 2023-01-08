@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
@@ -35,9 +36,7 @@ Route::get('/user/{username}', [UserController::class, 'show']);
 
 Route::get('genre/{genre}/{filter}/{page}', [GenreController::class, 'show']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
