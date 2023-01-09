@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('albums_invite', function (Blueprint $table) {
+        Schema::create('album_invites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('album_id')->constrained('albums');
             $table->foreignId('user_id')->constrained('users');
