@@ -28,39 +28,44 @@ $user = \Illuminate\Support\Facades\Auth::user();
 
             @if(Auth::check())
                 @if(Auth::user()->id == $album->user_id && !$album->is_default)
-                    <ion-icon name="share-outline" size="large" class="share-icon text-3xl opacity-50 hover:opacity-90 cursor-pointer"></ion-icon>
-                    <div  class="share-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
-            justify-center items-start">
-                        <p>Share</p>
-                        <input type="text" class="search-input text-black">
+                    <div class="sm:relative">
+                        <ion-icon name="share-outline" size="large" class="share-icon text-3xl opacity-50 hover:opacity-90 cursor-pointer"></ion-icon>
+                        <div  class="share-span bg-lighter-bg p-4 gap-4 flex flex-col hidden z-20 absolute left-0
+            justify-center items-start rounded">
+                            <h3 class="text-xl font-semibold text-accent mb-4">Options</h3>
+                            <input type="text" class="search-input text-black">
 
-                        <form class="resultsUser" action="{{route("share")}}" method="post" >
-                            @csrf
-                            <div class="share-users-results"></div>
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <input type="hidden" name="album_id" value="{{$album->id}}">
-                        </form>
-                    </div>
-                    <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 hover:opacity-90 cursor-pointer"></ion-icon>
-
-                    <div class="settings-span bg-lighter-bg p-4 flex flex-col gap-2 hidden z-20 absolute ml-4 top-0 left-full justify-center items-start rounded">
-                        <h3 class="text-xl font-semibold text-accent mb-4">Options</h3>
-                        <div class="flex flex-row justify-between w-full">
-                            <p class="text-lg text-white/80">Public</p>
-                            <label for="toggle-example" class="flex items-center cursor-pointer relative">
-                                <input type="checkbox" id="toggle-example" class="sr-only" {{ $album->is_public ? 'checked':'' }}>
-                                <div class="toggle-bg bg-gray-500 border-2 border-gray-500 h-6 w-11 rounded-full "></div>
-                            </label>
+                            <form class="resultsUser" action="{{route("share")}}" method="post" >
+                                @csrf
+                                <div class="share-users-results"></div>
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                <input type="hidden" name="album_id" value="{{$album->id}}">
+                            </form>
                         </div>
+                    </div>
+
+                    <div class="sm:relative">
+                        <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 hover:opacity-90 cursor-pointer"></ion-icon>
+
+                        <div class="settings-span bg-lighter-bg p-4 flex flex-col gap-2 hidden z-20 absolute ml-4 max-sm:top-full sm:top-0 max-sm:translate-x-[-100%] max-sm:mt-2 left-full justify-center items-start rounded">
+                            <h3 class="text-xl font-semibold text-accent mb-4">Options</h3>
+                            <div class="flex flex-row justify-between w-full">
+                                <p class="text-lg text-white/80">Public</p>
+                                <label for="toggle-example" class="flex items-center cursor-pointer relative">
+                                    <input type="checkbox" id="toggle-example" class="sr-only" {{ $album->is_public ? 'checked':'' }}>
+                                    <div class="toggle-bg bg-gray-500 border-2 border-gray-500 h-6 w-11 rounded-full "></div>
+                                </label>
+                            </div>
 
 
-                        <form action="{{route('delete')}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">
-                            <input type="submit" value="Delete Album"
-                                   class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30 rounded mt-4 cursor-pointer">
-                        </form>
+                            <form action="{{route('delete')}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">
+                                <input type="submit" value="Delete Album"
+                                       class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30 rounded mt-4 cursor-pointer">
+                            </form>
+                        </div>
                     </div>
                 @else
                     <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">

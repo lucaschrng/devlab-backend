@@ -129,7 +129,7 @@ function displayUsers(users) {
        // userDiv.classList.add('flex',"flex-row-reverse","items-start");
         labeluserCard.classList.add('flex',"flex-row")
         let userInitials = document.createElement('h2');
-        userInitials.classList.add('h-[80px]', 'min-w-[80px]', 'bg-white/20', 'rounded-full', 'leading-[80px]', 'text-center', 'text-4xl');
+        userInitials.classList.add('h-[80px]', 'min-w-[80px]', 'bg-white/20', 'rounded-full', 'text-center', 'text-4xl', 'flex', 'items-center', 'justify-center');
         userInitials.innerHTML = user.firstName.substring(0, 1) + user.lastName.substring(0, 1);
         let userNames = document.createElement('h3');
         userNames.classList.add('text-xl', 'w-full', 'flex', 'justify-center');
@@ -144,6 +144,7 @@ function displayUsers(users) {
     let sendButton=document.createElement('input');
     sendButton.type="submit";
     sendButton.value="share";
+    sendButton.classList.add('text-center', 'font-semibold', 'text-white/60', 'bg-white/10', 'hover:bg-white/20', 'p-2', 'rounded', 'w-full', 'cursor-pointer');
     resultsUser.appendChild(sendButton)
     addEmptyDivs(resultsUser);
 }

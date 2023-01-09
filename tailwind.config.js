@@ -7,6 +7,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/app.js',
+        './resources/js/album.js'
     ],
     theme: {
         extend: {

@@ -4,7 +4,7 @@
             <h2 class="text-4xl font-medium">Hi, {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} !</h2>
             <div class="relative flex items-center">
                 <ion-icon name="mail{{ $invites->count() > 0 ? '-unread':'' }}" class="mail-icon text-3xl opacity-50 hover:opacity-90 hover:cursor-pointer"></ion-icon>
-                <div class="absolute left-full top-0 flex flex-col items-start justify-start gap-2 bg-lighter-bg p-6 ml-2 notifications rounded w-[300px] hidden">
+                <div class="absolute left-full max-sm:left-0 top-0 max-sm:top-full flex flex-col items-start justify-start gap-2 bg-lighter-bg p-6 ml-2 max-sm:ml-0 max-sm:translate-x-[-100%] notifications rounded w-[300px] hidden z-10">
                     <h3 class="text-xl font-semibold text-accent">Invites</h3>
                     <div class="flex flex-col gap-2 w-full">
                         @foreach($invites as $invite)
