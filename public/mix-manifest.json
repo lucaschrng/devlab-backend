@@ -1,9 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-
     "/js/genre.js": "/js/genre.js",
-
     "/js/album.js": "/js/album.js",
-
     "/css/style.css": "/css/style.css"
 }

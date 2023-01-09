@@ -54,6 +54,8 @@ Route::post("/add",[AlbumController::class,'created'])->name("add");
 Route::delete('/delete',[\App\Http\Controllers\AlbumController::class,'delete'])->name("delete");
 require __DIR__.'/auth.php';
 
-
+Route::post('/share',[\App\Http\Controllers\AlbumsInvitesController::class,'create'])->name("share");
+Route::put('/share/accept',[\App\Http\Controllers\AlbumsInvitesController::class,'put'])->name('share.put');
+Route::delete('/share/delete',[\App\Http\Controllers\AlbumsInvitesController::class,"delete"])->name("share.delete");
 
 

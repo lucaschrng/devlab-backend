@@ -1,16 +1,15 @@
 <?php
-$user = \Illuminate\Support\Facades\Auth::user();
-$albums = \App\Models\Album::where('id',$album)->get();
+$albums = \App\Models\Album::where('user_id',['id'])->get();
 ?>
 
 <x-layout>
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css" />
     <main>
         <div class="flex flex-row m-10 justify-start items-center gap-4 w-fit ">
-            <h1 class="border-b-2  decoration-accent text-xl">{{$albums[0]["name"]}}</h1>
+            <h1 class="underline decoration-accent text-xl">VISIONNÉES</h1>
             <ion-icon name="settings-outline" class="settings-album" size="large"></ion-icon>
 
-            <div  class="settings-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
+            <div  class="settings-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-40 top-28
             justify-center items-start">
                 <p class="text-accent text-xl">Options</p>
                     <div class="flex flex-row gap-6">
@@ -21,28 +20,11 @@ $albums = \App\Models\Album::where('id',$album)->get();
                         </label>
 
                     </div>
-
-
-                <form action="{{route('delete')}}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <input type="hidden" value="{{$album}}" name="album_id">
+                <form action="">
                     <input type="submit" value="Delete Album" class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30">
                 </form>
             </div>
 
-            <ion-icon name="share-outline" size="large" class="share-icon"></ion-icon>
-            <div  class="share-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
-            justify-center items-start">
-                <p>Share</p>
-                <input type="text" class="search-input text-black">
-
-                <form class="resultsUser" action="{{route("share")}}" method="post" >
-                    @csrf
-                    <input type="hidden" name="user_id" value="{{$user["id"]}}">
-                    <input type="hidden" name="album_id" value="{{$album}}">
-                </form>
-            </div>
         </div>
 
         @foreach($movies as $movie)
