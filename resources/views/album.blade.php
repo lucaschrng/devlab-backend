@@ -1,6 +1,6 @@
 <x-layout>
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css"/>
-    <main class="p-24">
+    <main class="sm:p-24 max-sm:p-6">
         <div class="relative flex flex-row justify-start items-center gap-4 w-min">
             <h1 class="text-3xl font-semibold">{{ $album->name }}</h1>
 

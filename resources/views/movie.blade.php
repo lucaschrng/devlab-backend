@@ -2,7 +2,7 @@
     <main>
         <input type="hidden" value="{{ $movie['id'] }}" class="movie-id">
         <div class="flex justify-center">
-            <div class="movie-section p-20 flex flex-col gap-16 max-w-[1300px] xl:flex-row">
+            <div class="movie-section p-20 max-sm:p-2 flex flex-col gap-16 max-w-[1300px] xl:flex-row">
                 <img src="<?= 'https://image.tmdb.org/t/p/original' . $movie['poster_path']; ?>" alt="" class="rounded xl:w-2/5">
                 <div class="infos flex flex-col justify-between gap-6">
                     <div class="flex justify-between items-center gap-6">
@@ -84,11 +84,11 @@
                     </div>
                     <div>
                         <h3 class="relative text-2xl font-semibold after:content-[''] after:absolute after:h-[2px] after:bottom-[-5px] after:left-0 after:w-full after:bg-white after:opacity-10">Cast</h3>
-                        <ul class="flex gap-4 mt-5">
+                        <ul class="flex gap-4 mt-5 max-sm:flex-col">
                             @foreach($actors as $actor)
                                 @if($loop->index < 5)
-                                    <li>
-                                        <img src="https://image.tmdb.org/t/p/w300{{ $actor['profile_path'] }}" alt="" class="rounded">
+                                    <li class="max-sm:flex max-sm:gap-4">
+                                        <img src="https://image.tmdb.org/t/p/w300{{ $actor['profile_path'] }}" alt="" class="rounded max-sm:w-[100px]">
                                         <h3 class="text-sm mt-2 font-medium">{{ $actor['name'] }}<br><span class="opacity-40">{{ $actor['character'] }}</span></h3>
                                     </li>
                                 @endif

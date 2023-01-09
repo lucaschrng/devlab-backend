@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="p-[96px]">
+    <main class="p-24 max-sm:px-6">
         <div class="flex items-center gap-6">
             <h2 class="text-4xl font-medium">Hi, {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} !</h2>
             <ion-icon name="mail" class="text-3xl opacity-50 hover:opacity-100 hover:cursor-pointer"></ion-icon>
@@ -13,11 +13,11 @@
             <h2 class="text-3xl font-medium">Your albums:</h2>
             <div class="relative w-fit">
                 <button class="add-album mt-4 flex gap-2 items-center text-xl opacity-50 bg-lighter-bg p-2 rounded hover:opacity-100">New album<ion-icon name="add" class="text-3xl"></ion-icon></button>
-                <div class="absolute left-full top-0 ml-4 flex flex-col items-start justify-start gap-2 bg-lighter-bg p-4 create-album hidden z-20 rounded">
+                <div class="absolute sm:left-full max-sm:left-0 sm:top-0 max-sm:top-full sm:ml-4 max-sm:mt-4 flex flex-col items-start justify-start gap-2 bg-lighter-bg p-4 create-album hidden z-20 rounded">
                     <h3 class="text-xl font-semibold text-accent">Create a new album</h3>
                     <form  action='{{ route('add')}}' method="POST" class="flex-col flex">
                         @csrf
-                        <input type="text" name="albumname"  placeholder="Choose a name for your album">
+                        <input type="text" name="albumname" class="text-black" placeholder="Choose a name for your album">
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <label for="status">Private</label>
                         <input type="radio" name="status" id="" value="0">
