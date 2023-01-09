@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('albums_like', function (Blueprint $table) {
+        Schema::create('albums_likes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('album_id')->constrained('albums');
             $table->foreignId('user_id')->constrained('users');
