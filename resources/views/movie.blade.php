@@ -69,6 +69,22 @@
                                                 <button class="add-to-album flex items-center text-accent"><ion-icon name="{{ $album->isAdded ? 'remove':'add' }}-outline" class="add-album-icon text-2xl hover:bg-black/20 rounded cursor-pointer"></ion-icon></button>
                                             </li>
                                         @endforeach
+                                        @foreach($sharedAlbums as $album)
+                                                <li class="flex justify-between items-center text-lg text-white/80">
+                                                    <input type="hidden" value="{{ $album->album->id }}" class="album-id">
+                                                    <div class="flex items-center gap-2">
+                                                        {{ $album->album->name }}
+                                                        <ion-icon name="people" class="opacity-60"></ion-icon>
+                                                        @if($album->album->is_public)
+                                                            <ion-icon name="lock-open" class="opacity-60"></ion-icon>
+                                                        @else
+                                                            <ion-icon name="lock-closed" class="opacity-60"></ion-icon>
+                                                        @endif
+                                                    </div>
+                                                    <input type="hidden" value="{{ $album->album->isAdded ? 1:0 }}" class="is-added">
+                                                    <button class="add-to-album flex items-center text-accent"><ion-icon name="{{ $album->album->isAdded ? 'remove':'add' }}-outline" class="add-album-icon text-2xl hover:bg-black/20 rounded cursor-pointer"></ion-icon></button>
+                                                </li>
+                                            @endforeach
                                     </ul>
                                     <a href="{{ url('') . '/dashboard' }}" class="create-album text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full">Manage albums</a>
                                 @else
