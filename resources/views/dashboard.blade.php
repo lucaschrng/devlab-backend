@@ -1,9 +1,3 @@
-<x-layout>
-    <main class="p-24 max-sm:px-6">
-        <div class="flex items-center gap-6">
-            <h2 class="text-4xl font-medium">Hi, {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} !</h2>
-            <ion-icon name="mail" class="text-3xl opacity-50 hover:opacity-100 hover:cursor-pointer"></ion-icon>
-
 <?php
 $user = \Illuminate\Support\Facades\Auth::user();
 $albums = \App\Models\Album::where('user_id',$user['id'])->get();
@@ -18,10 +12,10 @@ $invites=\App\Models\AlbumInvite::where('invited_id',$user["id"])->get();
 
 ?>
 <x-layout>
-    <main>
-        <div class="flex flex-row  justify-start items-center">
-            <h2 class="text-3xl m-10"> Hi {{$user['username']}} !</h2>
-            <ion-icon name="mail-unread-outline" class="text-accent mail-icon" size="large"></ion-icon>
+    <main class="p-24 max-sm:px-6">
+        <div class="flex items-center gap-6">
+            <h2 class="text-4xl font-medium">Hi, {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} !</h2>
+            <ion-icon name="mail" class="mail-icon text-3xl opacity-50 hover:opacity-100 hover:cursor-pointer"></ion-icon>
 
             <div class="flex flex-col items-start justify-start gap-2 bg-white text-black p-6 ml-6 notifications hidden">
                 <p class="text-accent">Notifications</p>
