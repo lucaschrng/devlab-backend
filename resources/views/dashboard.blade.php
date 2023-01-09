@@ -1,16 +1,3 @@
-<?php
-$user = \Illuminate\Support\Facades\Auth::user();
-$albums = \App\Models\Album::where('user_id',$user['id'])->get();
-
-use App\Http\Controllers\AlbumController;
-use App\Models\Album;
-
-
-$invites=\App\Models\AlbumInvite::where('invited_id',$user["id"])->get();
-
-
-
-?>
 <x-layout>
     <main class="p-24 max-sm:px-6">
         <div class="flex items-center gap-6">
@@ -21,13 +8,12 @@ $invites=\App\Models\AlbumInvite::where('invited_id',$user["id"])->get();
                 <p class="text-accent">Notifications</p>
                 <div>
                     @foreach($invites as $invite)
-                        @if($invite['accepted']===0)
                         <p>{{$invite->user->username}} wants to share {{$invite->album->name}} with you !</p>
-                            <form action="{{route('share.put')}}" method="POST">
+                            <form action="{{route('share.accept')}}" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <input type="hidden" name="invite_id" value="{{$invite["id"]}}">
-                                <input type="hidden" name="invite_id" value="{{$invite["album_id"]}}">
+                                <input type="hidden" name="album_id" value="{{$invite["album_id"]}}">
                                 <input type="submit" value="Accept">
                             </form>
 
@@ -37,9 +23,6 @@ $invites=\App\Models\AlbumInvite::where('invited_id',$user["id"])->get();
                                 <input type="hidden" value="{{$invite['id']}}" name="invite_id">
                                 <input type="submit" value="Decline" class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30">
                             </form>
-
-
-                        @endif
                     @endforeach
                 </div>
             </div>
@@ -133,47 +116,39 @@ $invites=\App\Models\AlbumInvite::where('invited_id',$user["id"])->get();
                 @endfor
             </div>
         </div>
-
-        <h2>Shared Albums</h2>
-        <div id="sharedAlbums" class="flex flex-row gap-2 m-10 w-2/12 flex-wrap">
-
-
-                @foreach($albums as $albumes)
-
-                <a href="/album/{{$albumes->id}}">
-                    <div class="flex flex-col justify-center items-center  w-fit m-4 gap-6">
-                        <div >
-                            <div class="flex relative">
-                                <img src="https://image.tmdb.org/t/p/original/hBcY0fE9pfXzvVaY4GKarweriG2.jpg" alt="" class=" object-cover z-50">
-                                <div class='absolute w-full h-full bg-gray-700 shadow-[0_0_2px_-1px_rgba(0,0,0,1)] ml-4 -mt-4 z-10'></div>
-                                <div class='absolute w-full h-full bg-gray-600  ml-2 -mt-2 z-20'></div>
-
-
-
+        <div class="mt-24">
+            <h2 class="text-3xl font-medium">Shared albums:</h2>
+            <div class="flex flex-wrap justify-between gap-x-6 max-w-full">
+                @foreach($sharedAlbums as $album)
+                    @if($album->album->is_public)
+                        <a href="/album/{{ $album->album->id }}">
+                            <div class="min-w-[250px] max-w-[250px] mt-20 transition-all duration-300">
+                                <div >
+                                    <div class="flex relative">
+                                        @if($album->album->cover_path == '')
+                                            <div class="flex h-full justify-center items-center text-center w-full h-[375px] rounded bg-white/30 text-3xl font-semibold">
+                                                Empty
+                                            </div>
+                                        @else
+                                            <img src="https://image.tmdb.org/t/p/w300/{{ $album->album->cover_path }}" alt="" class="object-cover z-10 rounded">
+                                        @endif
+                                        <div class='absolute w-full h-full bg-white/20 shadow-[0_0_2px_-1px_rgba(0,0,0,1)] ml-4 -mt-4 rounded'></div>
+                                        <div class='absolute w-full h-full bg-white/20  ml-2 -mt-2 rounded'></div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row justify-center items-center gap-2 mt-4 text-xl font-medium">
+                                    <h2>{{$album->album->name}}</h2>
+                                    <ion-icon name="lock-open" class="opacity-50"></ion-icon>
+                                </div>
                             </div>
-                        </div>
-
-
-                        <div class="flex flex-row justify-center items-center gap-1">
-                            <h2>{{$albumes->name}}</h2>
-
-                            @if($albumes->is_public === true)
-                                <ion-icon name="lock-open-outline"></ion-icon>
-                            @else
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                            @endif
-                        </div>
-                    </div>
-                </a>
-
-            @endforeach
+                        </a>
+                    @endif
+                @endforeach
+                @for($i = 0; $i <= 10; $i++)
+                    <div class="min-w-[250px] max-w-[250px]"></div>
+                @endfor
+            </div>
         </div>
-
-
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <input type="submit" value="Log Out">
-        </form>
     </main>
     <script src="/js/album.js"></script>
 </x-layout>

@@ -19,10 +19,10 @@ class AlbumsInvitesController extends Controller
         ]);
 
         $allALbums=\App\Models\Album::where('id',$request->input('album_id'))->get();
-        return view('dashboard');
+        return Redirect(url('') . '/dashboard');
     }
 
-    public function put(Request $request){
+    public function accept(Request $request){
         $invite = \App\Models\AlbumInvite::find($request["invite_id"]);
 
 
@@ -35,9 +35,7 @@ class AlbumsInvitesController extends Controller
         $invite->accepted=1;
         $invite->update();
 
-        return view('dashboard',[
-          "invited"=>$invite,
-        ]);
+        return Redirect(url('') . '/dashboard');
     }
 
     public function delete(Request $request){
@@ -46,7 +44,7 @@ class AlbumsInvitesController extends Controller
             return response("Not Found",404);
         }
         $invite->delete();
-        return redirect('dashboard');
+        return Redirect(url('') . '/dashboard');
     }
 
 }

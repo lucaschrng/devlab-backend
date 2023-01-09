@@ -16,7 +16,7 @@ let notifSpan=document.querySelector(".notifications")
 let addAlbum = document.querySelector(".add-album")
 let createAlbumSpan = document.querySelector(".create-album")
 let shareAlbum =document.querySelector(".share-icon");
-let resultsUser=document.querySelector(".resultsUser");
+let resultsUser=document.querySelector(".share-users-results");
 let mailIcon=document.querySelector(".mail-icon")
 
 let likeButton = document.querySelector('.like-button');
