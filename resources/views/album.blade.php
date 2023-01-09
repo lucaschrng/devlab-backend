@@ -1,3 +1,8 @@
+<?php
+$user = \Illuminate\Support\Facades\Auth::user();
+$albums = \App\Models\Album::where('id',$album)->get();
+?>
+
 <x-layout>
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css"/>
     <main class="sm:p-24 max-sm:p-6">

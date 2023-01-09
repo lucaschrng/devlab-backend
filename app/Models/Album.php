@@ -13,4 +13,8 @@ class Album extends Model
     public function AlbumsLike() {
         return $this->hasMany(AlbumsLike::class);
     }
+    
+    public function ALbumInvite(){
+        return $this->hasMany(AlbumInvite::class);
+    }
 }

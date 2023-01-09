@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('album_id')->constrained('albums');
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('invited_id')->constrained('users');
             $table->boolean("accepted");
             $table->timestamps();
         });
