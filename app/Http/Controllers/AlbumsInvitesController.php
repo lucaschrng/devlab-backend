@@ -39,9 +39,7 @@ class AlbumsInvitesController extends Controller
           "invited"=>$invite,
         ]);
     }
-    public function showShareAlbum(){
-            $allAlbums=AlbumInvite::where('')
-    }
+
     public function delete(Request $request){
         $invite = AlbumInvite::find($request->input("invite_id"));
         if(!$invite){

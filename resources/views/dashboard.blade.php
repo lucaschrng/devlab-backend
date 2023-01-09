@@ -69,7 +69,7 @@ $invites=\App\Models\AlbumInvite::where('invited_id',$user["id"])->get();
             </div>
             <div class="flex flex-wrap justify-between gap-x-6 max-w-full mt-10">
                 @foreach($albums as $album)
-                    <a href="/album/{{ $album['id'] }}">
+                    <a href="/album/{{ $album->id }}">
                         <div class="min-w-[250px] max-w-[250px] mt-20 transition-all duration-300">
                             <div >
                                 <div class="flex relative">

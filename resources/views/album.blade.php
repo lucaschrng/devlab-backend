@@ -1,6 +1,6 @@
 <?php
 $user = \Illuminate\Support\Facades\Auth::user();
-$albums = \App\Models\Album::where('id',$album)->get();
+
 ?>
 
 <x-layout>
@@ -40,12 +40,7 @@ $albums = \App\Models\Album::where('id',$album)->get();
                             </label>
                         </div>
 
-                        <div class="flex flex-col gap-4 w-full">
-                            <div class="flex flex-row items-center justify-between w-full">
-                                <p class="text-lg text-white/80">Share</p>
-                                <ion-icon name="share-outline" class="text-2xl"></ion-icon>
-                            </div>
-                        </div>
+
                         <form action="{{route('delete')}}" method="POST">
                             @method('DELETE')
                             @csrf
@@ -54,10 +49,23 @@ $albums = \App\Models\Album::where('id',$album)->get();
                                    class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30 rounded mt-4 cursor-pointer">
                         </form>
                     </div>
+                    <ion-icon name="share-outline" size="large" class="share-icon"></ion-icon>
+                    <div  class="share-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
+            justify-center items-start">
+                        <p>Share</p>
+                        <input type="text" class="search-input text-black">
+
+                        <form class="resultsUser" action="{{route("share")}}" method="post" >
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
+                            <input type="hidden" name="album_id" value="{{$album->id}}">
+                        </form>
+                    </div>
                 @else
                     <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">
                 @endif
             @endif
+
         </div>
         <a href="{{ url('') . '/user/' . $username }}" class="text-xl text-white/60 hover:underline">{{ 'by @' . $username }}</a>
 
