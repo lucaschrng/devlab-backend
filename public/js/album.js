@@ -1,8 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/alpinejs/dist/module.esm.js":
 /*!**************************************************!*\
   !*** ./node_modules/alpinejs/dist/module.esm.js ***!
@@ -2982,7 +2980,6 @@ var module_default = src_default;
 
 /***/ }),
 
->>>>>>> shareAlbum
 /***/ "./node_modules/base64-js/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/base64-js/index.js ***!
@@ -8147,8 +8144,6 @@ module.exports = axios;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-<<<<<<< HEAD
-=======
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -8161,7 +8156,6 @@ module.exports = axios;
 /******/ 		};
 /******/ 	})();
 /******/ 	
->>>>>>> shareAlbum
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -8174,8 +8168,6 @@ module.exports = axios;
 /******/ 		})();
 /******/ 	})();
 /******/ 	
-<<<<<<< HEAD
-=======
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -8192,7 +8184,6 @@ module.exports = axios;
 /******/ 		};
 /******/ 	})();
 /******/ 	
->>>>>>> shareAlbum
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -8205,23 +8196,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
-<<<<<<< HEAD
-var axios = __webpack_require__(/*! axios */ "./node_modules/axios/dist/browser/axios.cjs");
-var albumSettings = document.querySelector(".settings-album");
-var settingsSpan = document.querySelector(".settings-span");
-var publicToggle = document.querySelector("#toggle-example");
-var addAlbum = document.querySelector(".add-album");
-var createAlbumSpan = document.querySelector(".create-album");
-var likeButton = document.querySelector('.like-button');
-var isLiked = document.querySelector('.is-liked');
-var userId = document.querySelector('.user-id');
-var likes = document.querySelector('.likes');
-=======
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/dist/browser/axios.cjs");
 var albumSettings = document.querySelector(".settings-album");
 var settingsSpan = document.querySelector(".settings-span");
+var publicToggle = document.querySelector("#toggle-example");
 var shareSpan = document.querySelector(".share-span");
 var notifSpan = document.querySelector(".notifications");
 var addAlbum = document.querySelector(".add-album");
@@ -8229,8 +8209,10 @@ var createAlbumSpan = document.querySelector(".create-album");
 var shareAlbum = document.querySelector(".share-icon");
 var resultsUser = document.querySelector(".resultsUser");
 var mailIcon = document.querySelector(".mail-icon");
-console.log(notifSpan);
->>>>>>> shareAlbum
+var likeButton = document.querySelector('.like-button');
+var isLiked = document.querySelector('.is-liked');
+var userId = document.querySelector('.user-id');
+var likes = document.querySelector('.likes');
 if (addAlbum) {
   addAlbum.addEventListener('click', function () {
     createAlbumSpan.classList.toggle('hidden');
@@ -8254,7 +8236,6 @@ if (albumSettings) {
     });
   });
 }
-<<<<<<< HEAD
 if (likeButton) {
   var _albumId = document.querySelector('.album-id').value;
   isLiked = isLiked.value == '1';
@@ -8279,7 +8260,6 @@ if (likeButton) {
     }
   });
 }
-=======
 if (shareAlbum) {
   shareAlbum.addEventListener('click', function () {
     shareSpan.classList.toggle('hidden');
@@ -8357,7 +8337,6 @@ function addEmptyDivs(parent) {
     parent.appendChild(emptyDiv);
   }
 }
->>>>>>> shareAlbum
 })();
 
 /******/ })()
