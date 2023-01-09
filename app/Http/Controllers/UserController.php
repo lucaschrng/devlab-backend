@@ -35,21 +35,10 @@ class UserController extends Controller
                 $album->album->cover_path = '';
             }
         }
-        $sharedAlbums = AlbumInvite::where('invited_id', $user->id)->where('accepted', 1)->get();
-        foreach ($sharedAlbums as $album) {
-            $first_movie = AlbumsMovie::where('album_id', $album->album->id)->get();
-            if (isset($first_movie[0])) {
-                $cover_path = Http::get('https://api.themoviedb.org/3/movie/' . $first_movie[0]->movie_id . '?api_key=' . $_ENV['API_KEY'] . '&language=en-US')->json()['poster_path'];
-                $album->album->cover_path = $cover_path;
-            } else {
-                $album->album->cover_path = '';
-            }
-        }
         return view('user', [
             'user' => $user,
             'albums' => $albums,
             'likedAlbums' => $liked_albums,
-            'sharedAlbums' => $sharedAlbums
         ]);
     }
 }
