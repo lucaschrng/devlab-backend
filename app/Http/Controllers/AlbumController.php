@@ -51,8 +51,6 @@ class AlbumController extends Controller
     }
 
     public function created(Request $request){
-        dump("irjfoierjfioerjfoeirjfoier");
-
         Album::create([
             "name"=>$request->input('albumname'),
             "user_id"=>$request->input('user_id'),

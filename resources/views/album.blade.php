@@ -7,7 +7,7 @@ $user = \Illuminate\Support\Facades\Auth::user();
     <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css"/>
     <main class="sm:p-24 max-sm:p-6">
         <div class="relative flex flex-row justify-start items-center gap-4 w-min">
-            <h1 class="text-3xl font-semibold">{{ $album->name }}</h1>
+            <h1 class="text-3xl font-semibold whitespace-nowrap">{{ $album->name }}</h1>
 
             <input type="hidden" value="{{ $album->id }}" class="album-id">
             @if(Auth::check())
@@ -16,10 +16,10 @@ $user = \Illuminate\Support\Facades\Auth::user();
             <input type="hidden" class="is-liked" value="{{ $isLiked ? 1:0 }}">
 
             @if($album->is_public)
-                <div class="flex text-red-500 items-center">
-                    <span class="likes text-xl font-semibold opacity-70">{{ $likes }}</span>
+                <div class="flex text-red-500 opacity-70 hover:opacity-100 items-center">
+                    <span class="likes text-xl font-semibold">{{ $likes }}</span>
                         @if(Auth::check())
-                            <ion-icon name="heart{{ $isLiked ? '':'-outline' }}" class="like-button text-3xl opacity-70 cursor-pointer"></ion-icon>
+                            <ion-icon name="heart{{ $isLiked ? '':'-outline' }}" class="like-button text-3xl cursor-pointer"></ion-icon>
                         @else
                             <a href="{{ url('') . '/login' }}" class="flex items-center"><ion-icon name="heart-outline" class="text-3xl opacity-70 cursor-pointer"></ion-icon></a>
                         @endif
@@ -27,8 +27,21 @@ $user = \Illuminate\Support\Facades\Auth::user();
             @endif
 
             @if(Auth::check())
-                @if(Auth::user()->id == $album->user_id)
-                    <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 cursor-pointer"></ion-icon>
+                @if(Auth::user()->id == $album->user_id && !$album->is_default)
+                    <ion-icon name="share-outline" size="large" class="share-icon text-3xl opacity-50 hover:opacity-90 cursor-pointer"></ion-icon>
+                    <div  class="share-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
+            justify-center items-start">
+                        <p>Share</p>
+                        <input type="text" class="search-input text-black">
+
+                        <form class="resultsUser" action="{{route("share")}}" method="post" >
+                            @csrf
+                            <div class="share-users-results"></div>
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
+                            <input type="hidden" name="album_id" value="{{$album->id}}">
+                        </form>
+                    </div>
+                    <ion-icon name="settings-outline" class="settings-album text-3xl opacity-50 hover:opacity-90 cursor-pointer"></ion-icon>
 
                     <div class="settings-span bg-lighter-bg p-4 flex flex-col gap-2 hidden z-20 absolute ml-4 top-0 left-full justify-center items-start rounded">
                         <h3 class="text-xl font-semibold text-accent mb-4">Options</h3>
@@ -47,19 +60,6 @@ $user = \Illuminate\Support\Facades\Auth::user();
                             <input type="hidden" value="{{ $album->id }}" name="album_id" class="album-id">
                             <input type="submit" value="Delete Album"
                                    class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30 rounded mt-4 cursor-pointer">
-                        </form>
-                    </div>
-                    <ion-icon name="share-outline" size="large" class="share-icon"></ion-icon>
-                    <div  class="share-span bg-lighter-bg p-4 gap-4 flex flex-col gap-4 hidden z-20 absolute ml-60 top-28
-            justify-center items-start">
-                        <p>Share</p>
-                        <input type="text" class="search-input text-black">
-
-                        <form class="resultsUser" action="{{route("share")}}" method="post" >
-                            @csrf
-                            <div class="share-users-results"></div>
-                            <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <input type="hidden" name="album_id" value="{{$album->id}}">
                         </form>
                     </div>
                 @else

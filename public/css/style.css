@@ -643,12 +643,6 @@ select{
 .row-overlap{
   grid-row: 1 / span 1;
 }
-.m-10{
-  margin: 2.5rem;
-}
-.m-4{
-  margin: 1rem;
-}
 .m-center{
   margin: 0 auto;
 }
@@ -824,9 +818,6 @@ select{
 .w-10{
   width: 2.5rem;
 }
-.w-2\/12{
-  width: 16.666667%;
-}
 .w-8{
   width: 2rem;
 }
@@ -995,9 +986,6 @@ select{
 .gap-2{
   gap: 0.5rem;
 }
-.gap-1{
-  gap: 0.25rem;
-}
 .gap-24{
   gap: 6rem;
 }
@@ -1146,14 +1134,6 @@ select{
 }
 .bg-white\/30{
   background-color: rgb(255 255 255 / 0.3);
-}
-.bg-gray-700{
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-.bg-gray-600{
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 .bg-black\/70{
   background-color: rgb(0 0 0 / 0.7);
@@ -1711,6 +1691,10 @@ body {
 
 .hover\:opacity-100:hover{
   opacity: 1;
+}
+
+.hover\:opacity-90:hover{
+  opacity: 0.9;
 }
 
 .focus\:z-10:focus{

@@ -55,14 +55,16 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
          Album::create([
-            "name"=>"Visionnés",
+            "name"=>"Watched movies",
             "user_id"=>$user['id'],
-             "is_public"=>true
+             "is_public"=>true,
+             'is_default'=>true,
         ]);
         Album::create([
-            "name"=>"Liste d'envies",
+            "name"=>"Watchlist",
             "user_id"=>$user['id'],
-            "is_public"=>true
+            "is_public"=>true,
+            'is_default'=>true,
         ]);
         //url('/album/liked/$user["id"]');
 

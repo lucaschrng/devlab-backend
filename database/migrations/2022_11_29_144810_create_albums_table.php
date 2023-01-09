@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->foreignId('user_id')->constrained('users');
             $table->boolean("is_public");
+            $table->boolean("is_default");
             $table->timestamps();
         });
     }
