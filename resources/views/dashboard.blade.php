@@ -2,30 +2,41 @@
     <main class="p-24 max-sm:px-6">
         <div class="flex items-center gap-6">
             <h2 class="text-4xl font-medium">Hi, {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} !</h2>
-            <ion-icon name="mail" class="mail-icon text-3xl opacity-50 hover:opacity-100 hover:cursor-pointer"></ion-icon>
+            <div class="relative flex items-center">
+                <ion-icon name="mail{{ $invites->count() > 0 ? '-unread':'' }}" class="mail-icon text-3xl opacity-50 hover:opacity-90 hover:cursor-pointer"></ion-icon>
+                <div class="absolute left-full top-0 flex flex-col items-start justify-start gap-2 bg-lighter-bg p-6 ml-2 notifications rounded w-[300px] hidden">
+                    <h3 class="text-xl font-semibold text-accent">Invites</h3>
+                    <div class="flex flex-col gap-2 w-full">
+                        @foreach($invites as $invite)
+                            <div class="bg-white/10 p-2 rounded">
+                                <p><span class="text-accent font-bold">{{'@' . $invite->user->username}}</span> wants to share <span class="text-accent font-bold">{{$invite->album->name}}</span> with you !</p>
+                                <div class="w-full flex gap-2 mt-2">
+                                    <form action="{{route('share.accept')}}" method="POST" class="w-1/2">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="invite_id" value="{{$invite["id"]}}">
+                                        <input type="hidden" name="album_id" value="{{$invite["album_id"]}}">
+                                        <button class="text-3xl flex justify-center items-center w-full bg-green-500/20 hover:bg-green-500/30 rounded p-2"><ion-icon name="checkmark-outline"></ion-icon></button>
+                                    </form>
 
-            <div class="flex flex-col items-start justify-start gap-2 bg-white text-black p-6 ml-6 notifications hidden">
-                <p class="text-accent">Notifications</p>
-                <div>
-                    @foreach($invites as $invite)
-                        <p>{{$invite->user->username}} wants to share {{$invite->album->name}} with you !</p>
-                            <form action="{{route('share.accept')}}" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <input type="hidden" name="invite_id" value="{{$invite["id"]}}">
-                                <input type="hidden" name="album_id" value="{{$invite["album_id"]}}">
-                                <input type="submit" value="Accept">
-                            </form>
-
-                            <form action="{{route('share.delete')}}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <input type="hidden" value="{{$invite['id']}}" name="invite_id">
-                                <input type="submit" value="Decline" class="px-12 py-2 bg-red-500 text-red-600 text-lg bg-opacity-30">
-                            </form>
-                    @endforeach
+                                    <form action="{{route('share.delete')}}" method="POST" class="w-1/2">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input type="hidden" value="{{$invite['id']}}" name="invite_id">
+                                        <button class="text-3xl flex justify-center items-center w-full bg-red-500/20 hover:bg-red-500/30 rounded p-2"><ion-icon name="close-outline"></ion-icon></button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                        @if($invites->count() == 0)
+                                <div class="bg-white/10 p-2 rounded w-full">
+                                    <p class="w-full text-center text-white/60 font-semibold">No invite</p>
+                                </div>
+                        @endif
+                    </div>
                 </div>
             </div>
+
         </div>
         <h3 class="text-xl text-white/60">{{ '@' . Auth::user()->username }}</h3>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -38,14 +49,14 @@
                 <button class="add-album mt-4 flex gap-2 items-center text-xl opacity-50 bg-lighter-bg p-2 rounded hover:opacity-100">New album<ion-icon name="add" class="text-3xl"></ion-icon></button>
                 <div class="absolute sm:left-full max-sm:left-0 sm:top-0 max-sm:top-full sm:ml-4 max-sm:mt-4 flex flex-col items-start justify-start gap-2 bg-lighter-bg p-4 create-album hidden z-20 rounded">
                     <h3 class="text-xl font-semibold text-accent">Create a new album</h3>
-                    <form  action='{{ route('add')}}' method="POST" class="flex-col flex">
+                    <form  action='{{ route('add')}}' method="POST" class="flex-col flex gap-2">
                         @csrf
                         <input type="text" name="albumname" class="text-black" placeholder="Choose a name for your album">
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <label for="status">Private</label>
-                        <input type="radio" name="status" id="" value="0">
-                        <label for="status">Public</label>
-                        <input type="radio" name="status" id="" value="1">
+                        <label for="status" class="flex items-center cursor-pointer relative gap-2">
+                            Public album
+                            <input type="checkbox" id="status" name="status" class="" value="1"/>
+                        </label>
                         <input type="submit" value="Create" class="text-center font-semibold text-white/60 bg-white/10 hover:bg-white/20 p-2 rounded w-full cursor-pointer">
                     </form>
                 </div>
