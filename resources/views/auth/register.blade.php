@@ -71,6 +71,7 @@
                 </x-primary-button>
             </div>
         </form>
+
 </main>
    <!-- </x-auth-card>-->
 </x-layout>
